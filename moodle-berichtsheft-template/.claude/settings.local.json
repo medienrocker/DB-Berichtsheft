@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm -f \"[bs] - FEEDbook - preset.zip\")",
+      "Bash(zip \"[bs] - FEEDbook - preset.zip\" preset.xml addtemplate.html singletemplate.html listtemplateheader.html listtemplate.html listtemplatefooter.html asearchtemplate.html rsstemplate.html rsstitletemplate.html csstemplate.css jstemplate.js)",
+      "Bash(powershell -Command \"Remove-Item ''[bs] - FEEDbook - preset.zip'' -ErrorAction SilentlyContinue; Compress-Archive -Path preset.xml,addtemplate.html,singletemplate.html,listtemplateheader.html,listtemplate.html,listtemplatefooter.html,asearchtemplate.html,rsstemplate.html,rsstitletemplate.html,csstemplate.css,jstemplate.js -DestinationPath ''[bs] - FEEDbook - preset.zip'' -Force\")"
+    ]
+  }
+}
