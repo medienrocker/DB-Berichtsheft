@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <preset>
 
-<description>Praktikumswochenbericht - Berichtsheft für die Dokumentation von Praktikumswochen mit Tagesberichten und persönlicher Bewertung</description>
+<description/>
 
 <settings>
 <intro/>
@@ -16,7 +16,558 @@
 <defaultsort>0</defaultsort>
 </settings>
 
-<!-- Allgemeine Angaben -->
+<field>
+<type>text</type>
+<name>Praktikumsberuf</name>
+<description>Beruf oder Berufsfeld des Praktikums</description>
+<required>1</required>
+<param1>30</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Praktikumsbetrieb</name>
+<description>Name des Praktikumsbetriebs</description>
+<required>1</required>
+<param1>50</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Abteilung</name>
+<description>Abteilung oder genauer Arbeitsort</description>
+<required>0</required>
+<param1>40</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Betreuer</name>
+<description>Name der Betreuungsperson im Betrieb</description>
+<required>0</required>
+<param1>30</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>date</type>
+<name>Datum1</name>
+<description>Datum Tagesbericht 1</description>
+<required>0</required>
+<param1>0</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>textarea</type>
+<name>Gefallen1</name>
+<description>Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</description>
+<required>0</required>
+<param1>60</param1>
+<param2>40</param2>
+<param3>4</param3>
+<param4>1</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe1_1</name>
+<description>Hauptaufgaben in den ersten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe1_2</name>
+<description>Hauptaufgaben in den zweiten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe1_3</name>
+<description>Hauptaufgaben in den dritten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe1_4</name>
+<description>Hauptaufgaben in den letzten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Zusammenarbeit1</name>
+<description>Mit wem habe ich heute am meisten gearbeitet?</description>
+<required>0</required>
+<param1>40</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>date</type>
+<name>Datum2</name>
+<description>Datum Tagesbericht 2</description>
+<required>0</required>
+<param1>0</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>textarea</type>
+<name>Gefallen2</name>
+<description>Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</description>
+<required>0</required>
+<param1>60</param1>
+<param2>40</param2>
+<param3>4</param3>
+<param4>1</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe2_1</name>
+<description>Hauptaufgaben in den ersten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe2_2</name>
+<description>Hauptaufgaben in den zweiten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe2_3</name>
+<description>Hauptaufgaben in den dritten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe2_4</name>
+<description>Hauptaufgaben in den letzten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Zusammenarbeit2</name>
+<description>Mit wem habe ich heute am meisten gearbeitet?</description>
+<required>0</required>
+<param1>40</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>date</type>
+<name>Datum3</name>
+<description>Datum Tagesbericht 3</description>
+<required>0</required>
+<param1>0</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>textarea</type>
+<name>Gefallen3</name>
+<description>Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</description>
+<required>0</required>
+<param1>60</param1>
+<param2>40</param2>
+<param3>4</param3>
+<param4>1</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe3_1</name>
+<description>Hauptaufgaben in den ersten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe3_2</name>
+<description>Hauptaufgaben in den zweiten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe3_3</name>
+<description>Hauptaufgaben in den dritten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe3_4</name>
+<description>Hauptaufgaben in den letzten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Zusammenarbeit3</name>
+<description>Mit wem habe ich heute am meisten gearbeitet?</description>
+<required>0</required>
+<param1>40</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>date</type>
+<name>Datum4</name>
+<description>Datum Tagesbericht 4</description>
+<required>0</required>
+<param1>0</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>textarea</type>
+<name>Gefallen4</name>
+<description>Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</description>
+<required>0</required>
+<param1>60</param1>
+<param2>40</param2>
+<param3>4</param3>
+<param4>1</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe4_1</name>
+<description>Hauptaufgaben in den ersten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe4_2</name>
+<description>Hauptaufgaben in den zweiten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe4_3</name>
+<description>Hauptaufgaben in den dritten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe4_4</name>
+<description>Hauptaufgaben in den letzten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Zusammenarbeit4</name>
+<description>Mit wem habe ich heute am meisten gearbeitet?</description>
+<required>0</required>
+<param1>40</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>date</type>
+<name>Datum5</name>
+<description>Datum Tagesbericht 5</description>
+<required>0</required>
+<param1>0</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>textarea</type>
+<name>Gefallen5</name>
+<description>Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</description>
+<required>0</required>
+<param1>60</param1>
+<param2>40</param2>
+<param3>4</param3>
+<param4>1</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe5_1</name>
+<description>Hauptaufgaben in den ersten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe5_2</name>
+<description>Hauptaufgaben in den zweiten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe5_3</name>
+<description>Hauptaufgaben in den dritten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe5_4</name>
+<description>Hauptaufgaben in den letzten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Zusammenarbeit5</name>
+<description>Mit wem habe ich heute am meisten gearbeitet?</description>
+<required>0</required>
+<param1>40</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>date</type>
+<name>Datum6</name>
+<description>Datum Tagesbericht 6</description>
+<required>0</required>
+<param1>0</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>textarea</type>
+<name>Gefallen6</name>
+<description>Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</description>
+<required>0</required>
+<param1>60</param1>
+<param2>40</param2>
+<param3>4</param3>
+<param4>1</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe6_1</name>
+<description>Hauptaufgaben in den ersten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe6_2</name>
+<description>Hauptaufgaben in den zweiten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe6_3</name>
+<description>Hauptaufgaben in den dritten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Aufgabe6_4</name>
+<description>Hauptaufgaben in den letzten 2 Stunden</description>
+<required>0</required>
+<param1>60</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
+<field>
+<type>text</type>
+<name>Zusammenarbeit6</name>
+<description>Mit wem habe ich heute am meisten gearbeitet?</description>
+<required>0</required>
+<param1>40</param1>
+<param2>0</param2>
+<param3>0</param3>
+<param4>0</param4>
+<param5>0</param5>
+</field>
+
 <field>
 <type>radiobutton</type>
 <name>Arbeitszeit</name>
@@ -34,364 +585,11 @@
 
 <field>
 <type>text</type>
-<name>Praktikumsberuf</name>
-<description>Beruf oder Berufsfeld des Praktikums</description>
-<required>1</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Praktikumsbetrieb</name>
-<description>Name des Praktikumsbetriebs</description>
-<required>1</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Abteilung</name>
-<description>Abteilung oder genauer Arbeitsort</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Betreuer</name>
-<description>Name der Betreuungsperson im Betrieb</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
 <name>Wochenzeitraum</name>
 <description>Zeitraum der Praktikumswoche (wird automatisch berechnet)</description>
 <required>0</required>
 </field>
 
-<!-- Tagesbericht 1 -->
-<field>
-<type>date</type>
-<name>Datum1</name>
-<description>Datum Tagesbericht 1</description>
-<required>0</required>
-</field>
-
-<field>
-<type>textarea</type>
-<name>Gefallen1</name>
-<description>Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</description>
-<required>0</required>
-<param2>40</param2>
-<param3>4</param3>
-<param4>1</param4>
-<param5>0</param5>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe1_1</name>
-<description>Hauptaufgaben in den ersten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe1_2</name>
-<description>Hauptaufgaben in den zweiten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe1_3</name>
-<description>Hauptaufgaben in den dritten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe1_4</name>
-<description>Hauptaufgaben in den letzten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Zusammenarbeit1</name>
-<description>Mit wem habe ich heute am meisten gearbeitet?</description>
-<required>0</required>
-</field>
-
-<!-- Tagesbericht 2 -->
-<field>
-<type>date</type>
-<name>Datum2</name>
-<description>Datum Tagesbericht 2</description>
-<required>0</required>
-</field>
-
-<field>
-<type>textarea</type>
-<name>Gefallen2</name>
-<description>Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</description>
-<required>0</required>
-<param2>40</param2>
-<param3>4</param3>
-<param4>1</param4>
-<param5>0</param5>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe2_1</name>
-<description>Hauptaufgaben in den ersten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe2_2</name>
-<description>Hauptaufgaben in den zweiten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe2_3</name>
-<description>Hauptaufgaben in den dritten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe2_4</name>
-<description>Hauptaufgaben in den letzten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Zusammenarbeit2</name>
-<description>Mit wem habe ich heute am meisten gearbeitet?</description>
-<required>0</required>
-</field>
-
-<!-- Tagesbericht 3 -->
-<field>
-<type>date</type>
-<name>Datum3</name>
-<description>Datum Tagesbericht 3</description>
-<required>0</required>
-</field>
-
-<field>
-<type>textarea</type>
-<name>Gefallen3</name>
-<description>Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</description>
-<required>0</required>
-<param2>40</param2>
-<param3>4</param3>
-<param4>1</param4>
-<param5>0</param5>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe3_1</name>
-<description>Hauptaufgaben in den ersten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe3_2</name>
-<description>Hauptaufgaben in den zweiten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe3_3</name>
-<description>Hauptaufgaben in den dritten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe3_4</name>
-<description>Hauptaufgaben in den letzten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Zusammenarbeit3</name>
-<description>Mit wem habe ich heute am meisten gearbeitet?</description>
-<required>0</required>
-</field>
-
-<!-- Tagesbericht 4 -->
-<field>
-<type>date</type>
-<name>Datum4</name>
-<description>Datum Tagesbericht 4</description>
-<required>0</required>
-</field>
-
-<field>
-<type>textarea</type>
-<name>Gefallen4</name>
-<description>Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</description>
-<required>0</required>
-<param2>40</param2>
-<param3>4</param3>
-<param4>1</param4>
-<param5>0</param5>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe4_1</name>
-<description>Hauptaufgaben in den ersten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe4_2</name>
-<description>Hauptaufgaben in den zweiten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe4_3</name>
-<description>Hauptaufgaben in den dritten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe4_4</name>
-<description>Hauptaufgaben in den letzten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Zusammenarbeit4</name>
-<description>Mit wem habe ich heute am meisten gearbeitet?</description>
-<required>0</required>
-</field>
-
-<!-- Tagesbericht 5 -->
-<field>
-<type>date</type>
-<name>Datum5</name>
-<description>Datum Tagesbericht 5</description>
-<required>0</required>
-</field>
-
-<field>
-<type>textarea</type>
-<name>Gefallen5</name>
-<description>Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</description>
-<required>0</required>
-<param2>40</param2>
-<param3>4</param3>
-<param4>1</param4>
-<param5>0</param5>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe5_1</name>
-<description>Hauptaufgaben in den ersten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe5_2</name>
-<description>Hauptaufgaben in den zweiten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe5_3</name>
-<description>Hauptaufgaben in den dritten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe5_4</name>
-<description>Hauptaufgaben in den letzten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Zusammenarbeit5</name>
-<description>Mit wem habe ich heute am meisten gearbeitet?</description>
-<required>0</required>
-</field>
-
-<!-- Tagesbericht 6 -->
-<field>
-<type>date</type>
-<name>Datum6</name>
-<description>Datum Tagesbericht 6</description>
-<required>0</required>
-</field>
-
-<field>
-<type>textarea</type>
-<name>Gefallen6</name>
-<description>Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</description>
-<required>0</required>
-<param2>40</param2>
-<param3>4</param3>
-<param4>1</param4>
-<param5>0</param5>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe6_1</name>
-<description>Hauptaufgaben in den ersten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe6_2</name>
-<description>Hauptaufgaben in den zweiten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe6_3</name>
-<description>Hauptaufgaben in den dritten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Aufgabe6_4</name>
-<description>Hauptaufgaben in den letzten 2 Stunden</description>
-<required>0</required>
-</field>
-
-<field>
-<type>text</type>
-<name>Zusammenarbeit6</name>
-<description>Mit wem habe ich heute am meisten gearbeitet?</description>
-<required>0</required>
-</field>
-
-<!-- Persönliche Bewertung der Woche -->
 <field>
 <type>text</type>
 <name>NichtGut1</name>
@@ -401,8 +599,8 @@
 
 <field>
 <type>text</type>
-<name>NichtGut2</name>
-<description>Beschreibe ein Ding, das du in dieser Woche nicht so gut gefunden hast (2)</description>
+<name>Gut1</name>
+<description>Beschreibe ein Ding, das du in dieser Woche gut gefunden hast</description>
 <required>0</required>
 </field>
 
@@ -423,7 +621,7 @@
 <field>
 <type>text</type>
 <name>Klaerungsbedarf</name>
-<description>Folgendes muss ich in der nächsten Woche ansprechen / klären</description>
+<description>Folgendes muss ich in der n&#xE4;chsten Woche ansprechen / kl&#xE4;ren</description>
 <required>0</required>
 </field>
 
