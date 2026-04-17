@@ -121,6 +121,24 @@
     color: inherit;
 }
 
+/* Moodle generiert ##edit## / ##delete## als <a><i class="icon ... dataicon"></i></a>.
+   Die Klasse .dataicon setzt color direkt aufs <i> und ueberschreibt unseren Button-Text.
+   Explizit gegensteuern, damit die weisse Farbe greift. */
+.bs_single_actions .bs_action_btn,
+.bs_single_actions .bs_action_btn a,
+.bs_single_actions .bs_action_btn a:hover,
+.bs_single_actions .bs_action_btn a:focus,
+.bs_single_actions .bs_action_btn i,
+.bs_single_actions .bs_action_btn .icon,
+.bs_single_actions .bs_action_btn .dataicon {
+    color: #ffffff !important;
+    text-decoration: none;
+}
+
+.bs_single_actions .bs_action_btn i {
+    font-size: 18px;
+}
+
 .bs_action_edit {
     background: linear-gradient(135deg, var(--bs_color-primary) 0%, var(--bs_color-teal) 100%);
     color: #ffffff;
