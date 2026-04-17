@@ -191,10 +191,15 @@
     'use strict';
 
     function initializeDayControls() {
-        const tagesberichteSection = document.querySelector('.bs_tagesberichte');
+        // Nur in der Add-Ansicht aktiv (Single-View nutzt .bs_tagesbericht_card)
+        const addContainer = document.querySelector('.bs_berichtsheft_add');
+        if (!addContainer) return;
+
+        const tagesberichteSection = addContainer.querySelector('.bs_tagesberichte');
         if (!tagesberichteSection) return;
 
         const allDays = Array.from(tagesberichteSection.querySelectorAll('.bs_tagesbericht'));
+        if (allDays.length === 0) return;
 
         // Nur Tag 1 initial sichtbar
         allDays.forEach(function (day, index) {
@@ -286,5 +291,38 @@
 
     if (window.BerichtsheftTemplate) {
         window.BerichtsheftTemplate.initializeDayControls = initializeDayControls;
+    }
+})();
+
+/* ============================================================
+   Nur befuellte Tagesberichte anzeigen (single view)
+   ============================================================ */
+(function () {
+    'use strict';
+
+    function hideEmptyDayCards() {
+        const singleContainer = document.querySelector('.bs_berichtsheft_single');
+        if (!singleContainer) return;
+
+        const cards = singleContainer.querySelectorAll('.bs_tagesbericht_card');
+        cards.forEach(function (card) {
+            const contentEls = card.querySelectorAll('.bs_info_value, .bs_text_content, .bs_aufgabe_text');
+            const hasContent = Array.from(contentEls).some(function (el) {
+                return el.textContent.trim() !== '';
+            });
+            if (!hasContent) {
+                card.classList.add('hidden');
+            }
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', hideEmptyDayCards);
+    } else {
+        hideEmptyDayCards();
+    }
+
+    if (window.BerichtsheftTemplate) {
+        window.BerichtsheftTemplate.hideEmptyDayCards = hideEmptyDayCards;
     }
 })();

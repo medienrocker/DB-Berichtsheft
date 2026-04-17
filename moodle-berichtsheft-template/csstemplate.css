@@ -99,6 +99,7 @@
 .bs_single_actions {
     display: flex;
     gap: var(--bs_spacing-sm);
+    justify-content: center;
     margin-bottom: var(--bs_spacing-lg);
     padding: var(--bs_spacing-sm) 0;
 }
@@ -192,7 +193,7 @@
 
 .bs_question_block:hover {
     box-shadow: var(--bs_shadow-sm);
-    transform: translateX(2px);
+    border-color: var(--bs_color-teal);
 }
 
 .bs_question {
@@ -260,7 +261,6 @@
 .bs_tagesbericht:hover {
     border-color: var(--bs_color-teal);
     box-shadow: var(--bs_shadow-md);
-    transform: translateY(-2px);
 }
 
 .bs_tagesbericht:last-child {
