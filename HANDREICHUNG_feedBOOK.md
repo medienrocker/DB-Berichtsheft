@@ -4,9 +4,9 @@
 
 ## Überblick
 
-Das **feedBOOK** ist eine Moodle-Datenbank, die klassische Berichtshefte digital, reflexiv und lernförderlich ersetzt. Schüler*innen dokumentieren darin eine Praktikumswoche strukturiert über sechs Tage, reflektieren ihre Tätigkeiten und ziehen am Ende der Woche ein persönliches Fazit.
+Das **feedBOOK** ist eine Moodle-Datenbank, die klassische Berichtshefte digital, reflexiv und lernförderlich ersetzt. Schüler*innen dokumentieren darin eine Praktikumswoche strukturiert über bis zu sechs Tage, reflektieren ihre Tätigkeiten und ziehen am Ende der Woche ein persönliches Fazit.
 
-Die DB verbindet formale Dokumentation (Betrieb, Aufgaben, Arbeitszeit) mit Reflexionsimpulsen (Was hat mir gefallen? Was habe ich Neues gelernt? Highlight der Woche?) und erzeugt so ein echtes Feedback-Buch - kein reines Protokoll.
+Die DB verbindet formale Dokumentation (Betrieb, Aufgaben, Arbeitszeit) mit Reflexionsimpulsen (Was hat mir gefallen? Was habe ich Neues gelernt? Highlight der Woche?) und erzeugt so ein echtes Feedback-Buch, kein reines Protokoll.
 
 **Zielgruppe:** Schüler*innen in der Berufsorientierung (Klasse 8 bis 10) während eines ein- bis dreiwöchigen Betriebspraktikums.
 **Fächer:** Wirtschaft, Arbeitslehre, Berufsorientierung, Klassenrat, WAT.
@@ -57,15 +57,43 @@ Die DB wird als **Preset-ZIP** bereitgestellt: `feedBOOK-preset.zip`.
 Die DB enthält:
 
 - **Allgemeine Angaben:** Beruf, Betrieb, Abteilung, Betreuung, Arbeitszeit.
-- **6 Tagesberichte:** je Datum, Highlight, 4 Zeitblöcke à 2 Stunden, Zusammenarbeit.
+- **Bis zu 6 Tagesberichte:** je Datum, Highlight, 4 Zeitblöcke à 2 Stunden, Zusammenarbeit.
 - **Wochenbewertung:** Nicht-Gut-Erlebnis, Gut-Erlebnis, Neu-Gelerntes, Highlight, Klärungsbedarf.
 
-### A.6 Fehlerbehebung
+### A.6 Smarte Ansichten - das Besondere am feedBOOK
+
+Die DB nutzt zwei clevere UI-Mechanismen, die das Arbeiten für Schüler*innen und Lehrkräfte deutlich komfortabler machen.
+
+#### A.6.1 Dynamisches Eingabeformular (Add-View)
+
+Im Eingabeformular ist **initial nur Tag 1 sichtbar**. Unterhalb der Tagesberichte stehen zwei Buttons:
+
+- **Tag hinzufügen** blendet den nächsten Tagesbericht ein (bis maximal Tag 6).
+- **Tag entfernen** blendet den letzten sichtbaren Tag wieder aus.
+
+So sehen Schüler*innen nur die Felder, die sie wirklich brauchen. Kein endloses Scrollen durch leere Tage. Die Lernenden entscheiden selbst, wie viele Tage das Praktikum umfasst (typisch 3 bis 5 Tage pro Woche).
+
+#### A.6.2 Tab-Navigation in der Einzelansicht (Single-View)
+
+Beim Öffnen eines Eintrags sehen Lehrkräfte und Schüler*innen unter der Überschrift "Tagesberichte" **6 kompakte Tabs (T1 bis T6)**. Jeder Tab zeigt einen Indikator:
+
+- **Ausgefüllter Kreis mit Haken:** Der Tag wurde inhaltlich befüllt (Aufgaben, Highlight oder Zusammenarbeit eingegeben).
+- **Leerer Kreis:** Der Tag hat nur das automatisch gesetzte Datum, aber keinen Inhalt.
+
+Ein Klick auf einen Tab zeigt den jeweiligen Tagesbericht. Vorteile:
+
+- **Schneller Überblick:** Man sieht auf einen Blick, welche Tage echten Inhalt haben.
+- **Weniger Scrollen:** Nur ein Tag gleichzeitig sichtbar.
+- **Barrierefrei:** Tabs sind mit Pfeiltasten, Home und End per Tastatur bedienbar.
+- **Druckfreundlich:** Beim Ausdrucken werden alle Tage automatisch untereinander angezeigt.
+
+### A.7 Fehlerbehebung
 
 - **Import scheitert:** ZIP-Datei nicht entpacken. Immer als `.zip` hochladen.
 - **Felder fehlen nach Import:** Reihenfolge der Voreinstellungen prüfen, ggf. erneut in leerer DB importieren.
 - **Datumsfelder zeigen falsches Format:** Moodle-Sprache und Zeitzone prüfen (Systemadministration).
-- **Layout sieht kaputt aus:** Moodle-Theme auf einen Boost-basierten Theme stellen. Ältere Themes interpretieren `[[feldname]]` teils fehlerhaft.
+- **Tab-Icons fehlen:** Moodle-Theme auf einen Boost-basierten Theme stellen. FontAwesome 6 Free muss aktiv sein.
+- **Layout sieht kaputt aus:** Ältere Themes interpretieren `[[feldname]]` teils fehlerhaft. Boost oder Boost-Union verwenden.
 
 ---
 
@@ -87,35 +115,36 @@ Die Schüler*innen...
 
 #### Phase 1 - Einführung (Unterrichtsstunde vor dem Praktikum, ca. 45 Minuten)
 
-1. Lehrkraft erklärt Sinn und Struktur des feedBOOKs - **nicht Kontrolle, sondern Selbstverständigung**.
-2. Gemeinsamer Blick auf das Eingabeformular: Welche Frage ist für wen relevant?
+1. Lehrkraft erklärt Sinn und Struktur des feedBOOKs, **nicht Kontrolle, sondern Selbstverständigung**.
+2. Gemeinsamer Blick auf das Eingabeformular. Wichtig: Tag hinzufügen und Tag entfernen zeigen. Lernende sehen nur die Felder, die sie wirklich brauchen.
 3. Verabredung: **Tägliche Eingabe im Betrieb oder abends** (maximal 10 bis 15 Minuten pro Tag).
 4. Klärung: Was passiert bei Technik-Problemen? (Papier-Backup als PDF vorhalten.)
 
 #### Phase 2 - Nutzung (während des Praktikums)
 
-- **Täglich:** Schüler*innen füllen einen Tagesbericht aus. Datum, Highlight, 4 Aufgaben-Blöcke, Zusammenarbeit.
+- **Täglich:** Schüler*innen klicken **Tag hinzufügen**, füllen den neuen Tagesbericht aus (Datum, Highlight, 4 Aufgaben-Blöcke, Zusammenarbeit) und speichern.
 - **Am Wochenende:** Schüler*innen ergänzen den Wochenbewertungs-Block (Gut, Nicht-Gut, Neu-Gelerntes, Highlight, Klärungsbedarf).
-- Die Lehrkraft **kommentiert alle 2 bis 3 Tage** kurz und wertschätzend - aber greift nicht korrigierend in den Inhalt ein.
+- Die Lehrkraft **kommentiert alle 2 bis 3 Tage** kurz und wertschätzend, greift aber nicht korrigierend in den Inhalt ein.
 
 #### Phase 3 - Nachbereitung (1 bis 2 Unterrichtsstunden nach dem Praktikum)
 
-1. **Einzelarbeit:** Jede*r Schüler*in liest das eigene feedBOOK noch einmal durch und markiert 3 Erkenntnisse.
+1. **Einzelarbeit:** Jede*r Schüler*in öffnet das eigene feedBOOK. Über die Tab-Navigation (T1 bis T6) lässt sich jeder Tag einzeln durchgehen. Drei Erkenntnisse markieren.
 2. **Partnerinterview:** Zu zweit: Welche Aufgaben würdest du gern wieder machen? Welche nicht?
-3. **Plenum:** Cluster an der Tafel - Berufe/Tätigkeiten mit Gut- und Nicht-Gut-Anteilen.
+3. **Plenum:** Cluster an der Tafel. Berufe/Tätigkeiten mit Gut- und Nicht-Gut-Anteilen.
 4. **Transfer:** Jede*r formuliert ein Ziel für die weitere Berufsorientierung (passt zu mir / passt nicht zu mir).
 
 #### Differenzierung
 
 - **Schriftlich schwächere Schüler*innen:** Antworten dürfen in Stichpunkten erfolgen. Audio-Aufnahmen über Moodle-Kommentarfeld als Alternative.
 - **Schnellere Schüler*innen:** Zusätzliche Reflexionsfrage pro Tag (Was würde ich morgen anders angehen?) als Kommentar.
-- **Sprachsensible Klassen:** Glossar mit Tätigkeitsverben (sortieren, beraten, reinigen...) vorab gemeinsam erstellen.
+- **Sprachsensible Klassen:** Glossar mit Tätigkeitsverben (sortieren, beraten, reinigen) vorab gemeinsam erstellen.
 
 #### Tipps für Lehrkräfte
 
-- **Keine Benotung** der Inhalte - nur die vollständige Bearbeitung als formales Kriterium werten.
+- **Keine Benotung** der Inhalte, nur die vollständige Bearbeitung als formales Kriterium werten.
 - **Antwortzeit klein halten:** Lieber drei kurze Kommentare als ein langer am Ende.
 - **Vertraulichkeit respektieren:** Inhalte nicht ohne Einverständnis im Plenum zitieren.
+- **Tab-Indikatoren nutzen:** Ein Blick auf die Tabs zeigt sofort, wie viele Tage befüllt wurden. Ideal für schnelle Fortschritts-Checks.
 
 ### B.3 Einsatzvariante - Das Projekt-Logbuch
 
@@ -129,7 +158,7 @@ Die Schüler*innen...
 - Eingabefrequenz: Pro Projekttreffen (nicht täglich), z. B. einmal pro Woche.
 - Dauer: 6 bis 10 Einträge über mehrere Wochen möglich (DB mehrfach nutzen).
 
-**Zusätzlicher Mehrwert:** Das Projekt-Logbuch dient zur **Prozess-Reflexion** und als **Material für Präsentationen** am Projektende. Die Klärungsbedarf-Frage wird zur Projekt-Retrospektive.
+**Zusätzlicher Mehrwert:** Das Projekt-Logbuch dient zur **Prozess-Reflexion** und als **Material für Präsentationen** am Projektende. Die Klärungsbedarf-Frage wird zur Projekt-Retrospektive. Die Tab-Navigation in der Einzelansicht macht die Präsentationsvorbereitung besonders schnell: Projektphasen einzeln durchklicken, Highlights extrahieren.
 
 ### B.4 Evaluation und Weiterarbeit
 
