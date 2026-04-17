@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview: Add-Template - feedBOOK Berichtsheft</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="csstemplate.css">
+    <style>
+        /* Preview-Wrapper, simuliert Moodle-Seitenrand */
+        body {
+            margin: 0;
+            background: #eef2f7;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .preview_banner {
+            background: var(--bs_color-primary);
+            color: #fff;
+            padding: 8px 16px;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .preview_banner a {
+            color: var(--bs_color-cyan);
+            text-decoration: none;
+        }
+        /* Form-Element Defaults für lokale Preview (in Moodle kommen die vom Theme) */
+        input[type="text"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            max-width: 500px;
+            padding: 8px 12px;
+            font-size: 14px;
+            font-family: inherit;
+            border: 1px solid var(--bs_color-border);
+            border-radius: var(--bs_radius-sm);
+            background: var(--bs_color-bg);
+            box-sizing: border-box;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--bs_color-teal);
+            box-shadow: 0 0 0 3px rgba(1, 151, 152, 0.2);
+        }
+        .bs_radio_group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 4px;
+        }
+        .bs_radio_option {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="preview_banner">
+    <span><i class="fas fa-eye"></i> Lokale Preview: <strong>addtemplate.html</strong> (Eingabeansicht)</span>
+    <a href="03List.html" title="Zur Listenansicht wechseln">Zur Listenansicht &rarr;</a>
+</div>
+
+<div class="bs_berichtsheft_add">
+
+    <div class="bs_header_banner">
+        <i class="fas fa-book-open"></i>
+        <h1 class="bs_header_title">Dein feedBOOK - Das smarte Berichtsheft</h1>
+    </div>
+    <div class="bs_accent_line"></div>
+
+    <section class="bs_section bs_allgemeine_angaben">
+        <h2 class="bs_section_title">
+            <i class="fas fa-info-circle"></i> Allgemeine Angaben
+        </h2>
+
+        <div class="bs_question_block">
+            <label class="bs_question">
+                <i class="fas fa-clock"></i> Durchschnittliche Arbeitszeit in Stunden pro Tag
+            </label>
+            <div class="bs_radio_group">
+                <label class="bs_radio_option"><input type="radio" name="Arbeitszeit" value="1"> 1</label>
+                <label class="bs_radio_option"><input type="radio" name="Arbeitszeit" value="2"> 2</label>
+                <label class="bs_radio_option"><input type="radio" name="Arbeitszeit" value="3"> 3</label>
+                <label class="bs_radio_option"><input type="radio" name="Arbeitszeit" value="4"> 4</label>
+                <label class="bs_radio_option"><input type="radio" name="Arbeitszeit" value="5"> 5</label>
+                <label class="bs_radio_option"><input type="radio" name="Arbeitszeit" value="6"> 6</label>
+                <label class="bs_radio_option"><input type="radio" name="Arbeitszeit" value="7"> 7</label>
+                <label class="bs_radio_option"><input type="radio" name="Arbeitszeit" value="8" checked> 8</label>
+            </div>
+        </div>
+
+        <div class="bs_question_block">
+            <label class="bs_question">
+                <i class="fas fa-briefcase"></i> Beruf oder Berufsfeld des Praktikums
+            </label>
+            <input type="text" name="Praktikumsberuf" maxlength="30" value="Mediengestalter*in">
+        </div>
+
+        <div class="bs_question_block">
+            <label class="bs_question">
+                <i class="fas fa-building"></i> Name des Praktikumsbetriebs
+            </label>
+            <input type="text" name="Praktikumsbetrieb" maxlength="50" value="Druckerei Musterstadt GmbH">
+        </div>
+
+        <div class="bs_question_block">
+            <label class="bs_question">
+                <i class="fas fa-map-marker-alt"></i> Abteilung oder genauer Arbeitsort
+            </label>
+            <input type="text" name="Abteilung" maxlength="40" value="Vorstufe / Layout">
+        </div>
+
+        <div class="bs_question_block">
+            <label class="bs_question">
+                <i class="fas fa-user-tie"></i> Name des Betreuers im Betrieb
+            </label>
+            <input type="text" name="Betreuer" maxlength="30" value="Frau Schneider">
+        </div>
+    </section>
+
+    <section class="bs_section bs_tagesberichte">
+        <h2 class="bs_section_title">
+            <i class="fas fa-calendar-week"></i> Tagesberichte
+        </h2>
+
+        <div class="bs_tagesbericht" data-day="1">
+            <h3 class="bs_day_title">
+                <i class="fas fa-calendar-day"></i> Tag 1
+            </h3>
+
+            <div class="bs_question_block">
+                <label class="bs_question">
+                    <i class="fas fa-calendar"></i> Datum Tagesbericht 1
+                </label>
+                <input type="date" name="Datum1" value="2026-04-13">
+            </div>
+
+            <div class="bs_question_block bs_highlight_question">
+                <label class="bs_question">
+                    <i class="fas fa-star"></i> Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?
+                </label>
+                <textarea name="Gefallen1" rows="4" cols="60">Ich durfte zum ersten Mal selbst ein Plakat im InDesign layouten - das hat richtig Spaß gemacht!</textarea>
+            </div>
+
+            <div class="bs_aufgaben_block">
+                <h4 class="bs_subtitle">
+                    <i class="fas fa-tasks"></i> Meine Hauptaufgaben heute
+                </h4>
+
+                <div class="bs_question_block">
+                    <label class="bs_question_time">Hauptaufgaben in den ersten 2 Stunden</label>
+                    <input type="text" name="Aufgabe1_1" maxlength="60" value="Einführung in die Druckvorstufe und Sicherheit">
+                </div>
+
+                <div class="bs_question_block">
+                    <label class="bs_question_time">Hauptaufgaben in den zweiten 2 Stunden</label>
+                    <input type="text" name="Aufgabe1_2" maxlength="60" value="Bildbearbeitung in Photoshop (Freistellen)">
+                </div>
+
+                <div class="bs_question_block">
+                    <label class="bs_question_time">Hauptaufgaben in den dritten 2 Stunden</label>
+                    <input type="text" name="Aufgabe1_3" maxlength="60" value="Plakat-Layout in InDesign">
+                </div>
+
+                <div class="bs_question_block">
+                    <label class="bs_question_time">Hauptaufgaben in den letzten 2 Stunden</label>
+                    <input type="text" name="Aufgabe1_4" maxlength="60" value="Druckdaten prüfen und exportieren">
+                </div>
+            </div>
+
+            <div class="bs_question_block">
+                <label class="bs_question">
+                    <i class="fas fa-users"></i> Mit wem habe ich heute am meisten gearbeitet?
+                </label>
+                <input type="text" name="Zusammenarbeit1" maxlength="40" value="Frau Schneider (Betreuung)">
+            </div>
+        </div>
+
+        <div class="bs_tagesbericht" data-day="2">
+            <h3 class="bs_day_title"><i class="fas fa-calendar-day"></i> Tag 2</h3>
+            <div class="bs_question_block">
+                <label class="bs_question"><i class="fas fa-calendar"></i> Datum Tagesbericht 2</label>
+                <input type="date" name="Datum2">
+            </div>
+            <div class="bs_question_block bs_highlight_question">
+                <label class="bs_question"><i class="fas fa-star"></i> Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</label>
+                <textarea name="Gefallen2" rows="4" cols="60"></textarea>
+            </div>
+            <div class="bs_aufgaben_block">
+                <h4 class="bs_subtitle"><i class="fas fa-tasks"></i> Meine Hauptaufgaben heute</h4>
+                <div class="bs_question_block"><label class="bs_question_time">Hauptaufgaben in den ersten 2 Stunden</label><input type="text" name="Aufgabe2_1" maxlength="60"></div>
+                <div class="bs_question_block"><label class="bs_question_time">Hauptaufgaben in den zweiten 2 Stunden</label><input type="text" name="Aufgabe2_2" maxlength="60"></div>
+                <div class="bs_question_block"><label class="bs_question_time">Hauptaufgaben in den dritten 2 Stunden</label><input type="text" name="Aufgabe2_3" maxlength="60"></div>
+                <div class="bs_question_block"><label class="bs_question_time">Hauptaufgaben in den letzten 2 Stunden</label><input type="text" name="Aufgabe2_4" maxlength="60"></div>
+            </div>
+            <div class="bs_question_block">
+                <label class="bs_question"><i class="fas fa-users"></i> Mit wem habe ich heute am meisten gearbeitet?</label>
+                <input type="text" name="Zusammenarbeit2" maxlength="40">
+            </div>
+        </div>
+
+        <div class="bs_tagesbericht" data-day="3">
+            <h3 class="bs_day_title"><i class="fas fa-calendar-day"></i> Tag 3</h3>
+            <div class="bs_question_block">
+                <label class="bs_question"><i class="fas fa-calendar"></i> Datum Tagesbericht 3</label>
+                <input type="date" name="Datum3">
+            </div>
+            <div class="bs_question_block bs_highlight_question">
+                <label class="bs_question"><i class="fas fa-star"></i> Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</label>
+                <textarea name="Gefallen3" rows="4" cols="60"></textarea>
+            </div>
+            <div class="bs_aufgaben_block">
+                <h4 class="bs_subtitle"><i class="fas fa-tasks"></i> Meine Hauptaufgaben heute</h4>
+                <div class="bs_question_block"><label class="bs_question_time">Hauptaufgaben in den ersten 2 Stunden</label><input type="text" name="Aufgabe3_1" maxlength="60"></div>
+                <div class="bs_question_block"><label class="bs_question_time">Hauptaufgaben in den zweiten 2 Stunden</label><input type="text" name="Aufgabe3_2" maxlength="60"></div>
+                <div class="bs_question_block"><label class="bs_question_time">Hauptaufgaben in den dritten 2 Stunden</label><input type="text" name="Aufgabe3_3" maxlength="60"></div>
+                <div class="bs_question_block"><label class="bs_question_time">Hauptaufgaben in den letzten 2 Stunden</label><input type="text" name="Aufgabe3_4" maxlength="60"></div>
+            </div>
+            <div class="bs_question_block">
+                <label class="bs_question"><i class="fas fa-users"></i> Mit wem habe ich heute am meisten gearbeitet?</label>
+                <input type="text" name="Zusammenarbeit3" maxlength="40">
+            </div>
+        </div>
+
+        <div class="bs_tagesbericht" data-day="4">
+            <h3 class="bs_day_title"><i class="fas fa-calendar-day"></i> Tag 4</h3>
+            <div class="bs_question_block">
+                <label class="bs_question"><i class="fas fa-calendar"></i> Datum Tagesbericht 4</label>
+                <input type="date" name="Datum4">
+            </div>
+            <div class="bs_question_block bs_highlight_question">
+                <label class="bs_question"><i class="fas fa-star"></i> Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</label>
+                <textarea name="Gefallen4" rows="4" cols="60"></textarea>
+            </div>
+            <div class="bs_aufgaben_block">
+                <h4 class="bs_subtitle"><i class="fas fa-tasks"></i> Meine Hauptaufgaben heute</h4>
+                <div class="bs_question_block"><label class="bs_question_time">Hauptaufgaben in den ersten 2 Stunden</label><input type="text" name="Aufgabe4_1" maxlength="60"></div>
+                <div class="bs_question_block"><label class="bs_question_time">Hauptaufgaben in den zweiten 2 Stunden</label><input type="text" name="Aufgabe4_2" maxlength="60"></div>
+                <div class="bs_question_block"><label class="bs_question_time">Hauptaufgaben in den dritten 2 Stunden</label><input type="text" name="Aufgabe4_3" maxlength="60"></div>
+                <div class="bs_question_block"><label class="bs_question_time">Hauptaufgaben in den letzten 2 Stunden</label><input type="text" name="Aufgabe4_4" maxlength="60"></div>
+            </div>
+            <div class="bs_question_block">
+                <label class="bs_question"><i class="fas fa-users"></i> Mit wem habe ich heute am meisten gearbeitet?</label>
+                <input type="text" name="Zusammenarbeit4" maxlength="40">
+            </div>
+        </div>
+
+        <div class="bs_tagesbericht" data-day="5">
+            <h3 class="bs_day_title"><i class="fas fa-calendar-day"></i> Tag 5</h3>
+            <div class="bs_question_block">
+                <label class="bs_question"><i class="fas fa-calendar"></i> Datum Tagesbericht 5</label>
+                <input type="date" name="Datum5">
+            </div>
+            <div class="bs_question_block bs_highlight_question">
+                <label class="bs_question"><i class="fas fa-star"></i> Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</label>
+                <textarea name="Gefallen5" rows="4" cols="60"></textarea>
+            </div>
+            <div class="bs_aufgaben_block">
+                <h4 class="bs_subtitle"><i class="fas fa-tasks"></i> Meine Hauptaufgaben heute</h4>
+                <div class="bs_question_block"><label class="bs_question_time">Hauptaufgaben in den ersten 2 Stunden</label><input type="text" name="Aufgabe5_1" maxlength="60"></div>
+                <div class="bs_question_block"><label class="bs_question_time">Hauptaufgaben in den zweiten 2 Stunden</label><input type="text" name="Aufgabe5_2" maxlength="60"></div>
+                <div class="bs_question_block"><label class="bs_question_time">Hauptaufgaben in den dritten 2 Stunden</label><input type="text" name="Aufgabe5_3" maxlength="60"></div>
+                <div class="bs_question_block"><label class="bs_question_time">Hauptaufgaben in den letzten 2 Stunden</label><input type="text" name="Aufgabe5_4" maxlength="60"></div>
+            </div>
+            <div class="bs_question_block">
+                <label class="bs_question"><i class="fas fa-users"></i> Mit wem habe ich heute am meisten gearbeitet?</label>
+                <input type="text" name="Zusammenarbeit5" maxlength="40">
+            </div>
+        </div>
+
+        <div class="bs_tagesbericht" data-day="6">
+            <h3 class="bs_day_title"><i class="fas fa-calendar-day"></i> Tag 6</h3>
+            <div class="bs_question_block">
+                <label class="bs_question"><i class="fas fa-calendar"></i> Datum Tagesbericht 6</label>
+                <input type="date" name="Datum6">
+            </div>
+            <div class="bs_question_block bs_highlight_question">
+                <label class="bs_question"><i class="fas fa-star"></i> Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</label>
+                <textarea name="Gefallen6" rows="4" cols="60"></textarea>
+            </div>
+            <div class="bs_aufgaben_block">
+                <h4 class="bs_subtitle"><i class="fas fa-tasks"></i> Meine Hauptaufgaben heute</h4>
+                <div class="bs_question_block"><label class="bs_question_time">Hauptaufgaben in den ersten 2 Stunden</label><input type="text" name="Aufgabe6_1" maxlength="60"></div>
+                <div class="bs_question_block"><label class="bs_question_time">Hauptaufgaben in den zweiten 2 Stunden</label><input type="text" name="Aufgabe6_2" maxlength="60"></div>
+                <div class="bs_question_block"><label class="bs_question_time">Hauptaufgaben in den dritten 2 Stunden</label><input type="text" name="Aufgabe6_3" maxlength="60"></div>
+                <div class="bs_question_block"><label class="bs_question_time">Hauptaufgaben in den letzten 2 Stunden</label><input type="text" name="Aufgabe6_4" maxlength="60"></div>
+            </div>
+            <div class="bs_question_block">
+                <label class="bs_question"><i class="fas fa-users"></i> Mit wem habe ich heute am meisten gearbeitet?</label>
+                <input type="text" name="Zusammenarbeit6" maxlength="40">
+            </div>
+        </div>
+    </section>
+
+    <section class="bs_section bs_bewertung">
+        <h2 class="bs_section_title">
+            <i class="fas fa-chart-line"></i> Persönliche Bewertung der Woche
+        </h2>
+
+        <div class="bs_question_block">
+            <label class="bs_question">
+                <i class="fas fa-thumbs-down"></i> Beschreibe ein Ding, das du in dieser Woche nicht so gut gefunden hast (1)
+            </label>
+            <input type="text" name="NichtGut1" value="Die Mittagspause war sehr kurz.">
+        </div>
+
+        <div class="bs_question_block">
+            <label class="bs_question">
+                <i class="fas fa-thumbs-up"></i> Beschreibe ein Ding, das du in dieser Woche gut gefunden hast
+            </label>
+            <input type="text" name="Gut1" value="Das Team war super hilfsbereit.">
+        </div>
+
+        <div class="bs_question_block bs_learning_question">
+            <label class="bs_question">
+                <i class="fas fa-graduation-cap"></i> Was habe ich diese Woche Neues gelernt? Oder: Was habe ich diese Woche zum ersten Mal gemacht?
+            </label>
+            <input type="text" name="NeuesGelernt" value="Druckdaten korrekt für den Offsetdruck exportieren.">
+        </div>
+
+        <div class="bs_question_block bs_highlight_question">
+            <label class="bs_question">
+                <i class="fas fa-trophy"></i> Das Highlight dieser Woche war...
+            </label>
+            <input type="text" name="Highlight" value="Mein erstes selbst gestaltetes Plakat ging in Druck!">
+        </div>
+
+        <div class="bs_question_block">
+            <label class="bs_question">
+                <i class="fas fa-comment-dots"></i> Folgendes muss ich in der nächsten Woche ansprechen / klären
+            </label>
+            <input type="text" name="Klaerungsbedarf" value="Wann darf ich auch mal an einem Kundenprojekt mitarbeiten?">
+        </div>
+    </section>
+
+    <footer class="bs_footer_banner">
+        <div class="bs_footer_left">
+            <img src="https://img.bildungssprit.de/dbimg/default.png" alt="feedBOOK - Datenbank-Vorschaubild" title="feedBOOK - Das smarte Berichtsheft" class="bs_footer_dbimg">
+        </div>
+        <div class="bs_footer_center">
+            <span class="bs_footer_title">feedBOOK - Das smarte Berichtsheft</span>
+        </div>
+        <div class="bs_footer_right">
+            <span class="bs_footer_license">CC-BY-SA <a href="https://linktr.ee/bildungssprit" target="_blank" rel="noopener" title="bildungssprit auf Linktree">bildungssprit</a></span>
+            <a href="https://bildungssprit.de" target="_blank" rel="noopener" class="bs_footer_logo_link" title="bildungssprit.de besuchen">
+                <img src="https://img.bildungssprit.de/dbimg/bildungssprit_logo.png" alt="bildungssprit Logo - zur Website" title="bildungssprit.de" class="bs_footer_logo">
+            </a>
+        </div>
+    </footer>
+
+</div>
+
+<script src="jstemplate.js"></script>
+</body>
+</html>

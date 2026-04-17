@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview: List-Template - feedBOOK Berichtsheft</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="csstemplate.css">
+    <style>
+        body {
+            margin: 0;
+            background: #eef2f7;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .preview_banner {
+            background: var(--bs_color-primary);
+            color: #fff;
+            padding: 8px 16px;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .preview_banner a {
+            color: var(--bs_color-cyan);
+            text-decoration: none;
+        }
+        /* Action-Icon-Defaults für lokale Preview (in Moodle vom Theme) */
+        .bs_action_link a {
+            color: inherit;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: var(--bs_radius-sm);
+        }
+    </style>
+</head>
+<body>
+
+<div class="preview_banner">
+    <span><i class="fas fa-eye"></i> Lokale Preview: <strong>listtemplate.html</strong> (Listenansicht)</span>
+    <a href="01Add.html" title="Zur Eingabeansicht wechseln">&larr; Zur Eingabeansicht</a>
+</div>
+
+<div class="bs_wrapper">
+
+    <div class="bs_header_banner">
+        <i class="fas fa-book-open"></i>
+        <h1 class="bs_header_title">Dein feedBOOK - Das smarte Berichtsheft</h1>
+    </div>
+    <div class="bs_accent_line"></div>
+
+    <table class="bs_list_table" id="berichtsheft_list">
+        <thead>
+            <tr>
+                <th class="bs_th_name">Name</th>
+                <th class="bs_th_zeitraum">Zeitraum</th>
+                <th class="bs_th_beruf">Beruf</th>
+                <th class="bs_th_betrieb">Betrieb</th>
+                <th class="bs_th_highlight">
+                    <i class="fas fa-trophy" title="Highlight der Woche"></i>
+                </th>
+                <th class="bs_th_actions">Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <!-- Volle Woche (Mo-Sa): sollte KW + Datumsspanne anzeigen -->
+            <tr class="bs_list_row">
+                <td class="bs_td_name">
+                    <div class="bs_user_info">
+                        <span class="bs_user_avatar">
+                            <img src="https://i.pravatar.cc/80?img=12" alt="Avatar Lena Müller" title="Lena Müller">
+                        </span>
+                        <span class="bs_username">Lena Müller</span>
+                    </div>
+                </td>
+                <td class="bs_td_zeitraum bs_week_range"
+                    data-d1="13. April 2026"
+                    data-d2="14. April 2026"
+                    data-d3="15. April 2026"
+                    data-d4="16. April 2026"
+                    data-d5="17. April 2026"
+                    data-d6="18. April 2026">13. April 2026</td>
+                <td class="bs_td_beruf">Mediengestalter*in</td>
+                <td class="bs_td_betrieb">Druckerei Musterstadt GmbH</td>
+                <td class="bs_td_highlight">
+                    <span class="bs_trophy_icon" title="Highlight der Woche: Mein erstes selbst gestaltetes Plakat ging in Druck!">
+                        <i class="fas fa-trophy"></i>
+                    </span>
+                </td>
+                <td class="bs_td_actions">
+                    <div class="bs_action_buttons">
+                        <span class="bs_action_link"><a href="#" title="Details ansehen"><i class="fas fa-eye"></i></a></span>
+                        <span class="bs_action_link"><a href="#" title="Eintrag bearbeiten"><i class="fas fa-pen"></i></a></span>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- Teilwoche (Mo-Fr): sollte KW + Spanne Mo-Fr anzeigen -->
+            <tr class="bs_list_row">
+                <td class="bs_td_name">
+                    <div class="bs_user_info">
+                        <span class="bs_user_avatar">
+                            <img src="https://i.pravatar.cc/80?img=33" alt="Avatar Max Bäcker" title="Max Bäcker">
+                        </span>
+                        <span class="bs_username">Max Bäcker</span>
+                    </div>
+                </td>
+                <td class="bs_td_zeitraum bs_week_range"
+                    data-d1="6. April 2026"
+                    data-d2="7. April 2026"
+                    data-d3="8. April 2026"
+                    data-d4="9. April 2026"
+                    data-d5="10. April 2026"
+                    data-d6="">6. April 2026</td>
+                <td class="bs_td_beruf">Tischler*in</td>
+                <td class="bs_td_betrieb">Holzwerkstatt Schöne Möbel</td>
+                <td class="bs_td_highlight">
+                    <span class="bs_trophy_icon" title="Highlight der Woche: Erstes Regal komplett alleine zugeschnitten und montiert.">
+                        <i class="fas fa-trophy"></i>
+                    </span>
+                </td>
+                <td class="bs_td_actions">
+                    <div class="bs_action_buttons">
+                        <span class="bs_action_link"><a href="#" title="Details ansehen"><i class="fas fa-eye"></i></a></span>
+                        <span class="bs_action_link"><a href="#" title="Eintrag bearbeiten"><i class="fas fa-pen"></i></a></span>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- Nur Tag 1 eingetragen: Fallback auf einzelnes Datum + KW -->
+            <tr class="bs_list_row">
+                <td class="bs_td_name">
+                    <div class="bs_user_info">
+                        <span class="bs_user_avatar">
+                            <img src="https://i.pravatar.cc/80?img=47" alt="Avatar Sophie Özdemir" title="Sophie Özdemir">
+                        </span>
+                        <span class="bs_username">Sophie Özdemir</span>
+                    </div>
+                </td>
+                <td class="bs_td_zeitraum bs_week_range"
+                    data-d1="30. März 2026"
+                    data-d2=""
+                    data-d3=""
+                    data-d4=""
+                    data-d5=""
+                    data-d6="">30. März 2026</td>
+                <td class="bs_td_beruf">Fachinformatiker*in</td>
+                <td class="bs_td_betrieb">CodeWerk IT-Services</td>
+                <td class="bs_td_highlight">
+                    <span class="bs_trophy_icon" title="Highlight der Woche: Habe einen Bug im Kundenprojekt selbst gefunden und gefixt.">
+                        <i class="fas fa-trophy"></i>
+                    </span>
+                </td>
+                <td class="bs_td_actions">
+                    <div class="bs_action_buttons">
+                        <span class="bs_action_link"><a href="#" title="Details ansehen"><i class="fas fa-eye"></i></a></span>
+                        <span class="bs_action_link"><a href="#" title="Eintrag bearbeiten"><i class="fas fa-pen"></i></a></span>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- Tag 3 & Tag 5 gesetzt (unregelmaessig): sollte Spanne zwischen diesen beiden anzeigen -->
+            <tr class="bs_list_row">
+                <td class="bs_td_name">
+                    <div class="bs_user_info">
+                        <span class="bs_user_avatar">
+                            <img src="https://i.pravatar.cc/80?img=56" alt="Avatar Jonas Weiß" title="Jonas Weiß">
+                        </span>
+                        <span class="bs_username">Jonas Weiß</span>
+                    </div>
+                </td>
+                <td class="bs_td_zeitraum bs_week_range"
+                    data-d1=""
+                    data-d2=""
+                    data-d3="25. März 2026"
+                    data-d4=""
+                    data-d5="27. März 2026"
+                    data-d6="">25. März 2026</td>
+                <td class="bs_td_beruf">Kfz-Mechatroniker*in</td>
+                <td class="bs_td_betrieb">Auto Service Krüger</td>
+                <td class="bs_td_highlight">
+                    <span class="bs_trophy_icon" title="Highlight der Woche: Bremsen-Wechsel beobachtet und mitgeholfen.">
+                        <i class="fas fa-trophy"></i>
+                    </span>
+                </td>
+                <td class="bs_td_actions">
+                    <div class="bs_action_buttons">
+                        <span class="bs_action_link"><a href="#" title="Details ansehen"><i class="fas fa-eye"></i></a></span>
+                        <span class="bs_action_link"><a href="#" title="Eintrag bearbeiten"><i class="fas fa-pen"></i></a></span>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- Gar kein Datum: Zelle bleibt leer -->
+            <tr class="bs_list_row">
+                <td class="bs_td_name">
+                    <div class="bs_user_info">
+                        <span class="bs_user_avatar">
+                            <img src="https://i.pravatar.cc/80?img=5" alt="Avatar Aylin Kaya" title="Aylin Kaya">
+                        </span>
+                        <span class="bs_username">Aylin Kaya</span>
+                    </div>
+                </td>
+                <td class="bs_td_zeitraum bs_week_range"
+                    data-d1=""
+                    data-d2=""
+                    data-d3=""
+                    data-d4=""
+                    data-d5=""
+                    data-d6=""></td>
+                <td class="bs_td_beruf">Zahnmedizinische Fachangestellte</td>
+                <td class="bs_td_betrieb">Zahnarztpraxis Dr. Lehmann</td>
+                <td class="bs_td_highlight">
+                    <span class="bs_trophy_icon" title="Highlight der Woche: Noch kein Tagesbericht eingetragen.">
+                        <i class="fas fa-trophy"></i>
+                    </span>
+                </td>
+                <td class="bs_td_actions">
+                    <div class="bs_action_buttons">
+                        <span class="bs_action_link"><a href="#" title="Details ansehen"><i class="fas fa-eye"></i></a></span>
+                        <span class="bs_action_link"><a href="#" title="Eintrag bearbeiten"><i class="fas fa-pen"></i></a></span>
+                    </div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <footer class="bs_footer_banner">
+        <div class="bs_footer_left">
+            <img src="https://img.bildungssprit.de/dbimg/default.png" alt="feedBOOK - Datenbank-Vorschaubild" title="feedBOOK - Das smarte Berichtsheft" class="bs_footer_dbimg">
+        </div>
+        <div class="bs_footer_center">
+            <span class="bs_footer_title">feedBOOK - Das smarte Berichtsheft</span>
+        </div>
+        <div class="bs_footer_right">
+            <span class="bs_footer_license">CC-BY-SA <a href="https://linktr.ee/bildungssprit" target="_blank" rel="noopener" title="bildungssprit auf Linktree">bildungssprit</a></span>
+            <a href="https://bildungssprit.de" target="_blank" rel="noopener" class="bs_footer_logo_link" title="bildungssprit.de besuchen">
+                <img src="https://img.bildungssprit.de/dbimg/bildungssprit_logo.png" alt="bildungssprit Logo - zur Website" title="bildungssprit.de" class="bs_footer_logo">
+            </a>
+        </div>
+    </footer>
+</div>
+
+<script src="jstemplate.js"></script>
+</body>
+</html>
