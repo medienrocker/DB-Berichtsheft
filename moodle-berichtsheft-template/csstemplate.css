@@ -883,3 +883,93 @@
     border-color: var(--bs_color-pink);
     color: var(--bs_color-pink);
 }
+
+/* ============================================================
+   DAY TABS (single view)
+   ============================================================ */
+.bs_day_tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 var(--bs_spacing-md) 0;
+    padding: var(--bs_spacing-sm);
+    background: var(--bs_color-bg-alt);
+    border: 1px solid var(--bs_color-border);
+    border-radius: var(--bs_radius-sm);
+}
+
+.bs_day_tab {
+    flex: 1 1 0;
+    min-width: 72px;
+    padding: 10px 14px;
+    background: var(--bs_color-bg);
+    border: 1px solid var(--bs_color-border);
+    border-radius: var(--bs_radius-sm);
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--bs_color-text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    line-height: 1.2;
+}
+
+.bs_day_tab i {
+    font-size: 16px;
+    color: var(--bs_color-text-muted);
+}
+
+.bs_day_tab.is-filled {
+    color: var(--bs_color-text);
+}
+
+.bs_day_tab.is-filled i {
+    color: var(--bs_color-teal);
+}
+
+.bs_day_tab:hover {
+    border-color: var(--bs_color-pink);
+    color: var(--bs_color-text);
+}
+
+.bs_day_tab.is-active {
+    background: var(--bs_color-cream);
+    border-color: var(--bs_color-gold);
+    color: var(--bs_color-text);
+    box-shadow: var(--bs_shadow-sm);
+}
+
+.bs_day_tab.is-active i {
+    color: var(--bs_color-gold);
+}
+
+.bs_day_tab:focus-visible {
+    outline: 2px solid var(--bs_color-cyan);
+    outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+    .bs_day_tab {
+        min-width: 56px;
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .bs_day_tab i {
+        font-size: 14px;
+    }
+}
+
+@media print {
+    .bs_day_tabs {
+        display: none;
+    }
+
+    .bs_tagesbericht_card.hidden {
+        display: block !important;
+    }
+}

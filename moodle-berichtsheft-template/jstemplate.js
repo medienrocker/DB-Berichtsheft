@@ -295,34 +295,123 @@
 })();
 
 /* ============================================================
-   Nur befuellte Tagesberichte anzeigen (single view)
+   Tagesbericht-Tabs (single view)
+   ------------------------------------------------------------
+   - Immer 6 Tabs T1-T6
+   - Icon-Swap: fa-circle-check (befuellt) vs fa-circle (leer)
+   - Befuellt = mind. ein Feld ausser Datum hat Inhalt
+   - ARIA-Tabs-Pattern mit Keyboard-Navigation
    ============================================================ */
 (function () {
     'use strict';
 
-    function hideEmptyDayCards() {
+    function initializeDayTabs() {
         const singleContainer = document.querySelector('.bs_berichtsheft_single');
         if (!singleContainer) return;
 
-        const cards = singleContainer.querySelectorAll('.bs_tagesbericht_card');
-        cards.forEach(function (card) {
-            const contentEls = card.querySelectorAll('.bs_info_value, .bs_text_content, .bs_aufgabe_text');
-            const hasContent = Array.from(contentEls).some(function (el) {
-                return el.textContent.trim() !== '';
+        const section = singleContainer.querySelector('.bs_tagesberichte');
+        if (!section) return;
+
+        const cards = Array.from(section.querySelectorAll('.bs_tagesbericht_card'));
+        if (cards.length === 0) return;
+
+        // Tab-Leiste
+        const tablist = document.createElement('nav');
+        tablist.className = 'bs_day_tabs';
+        tablist.setAttribute('role', 'tablist');
+        tablist.setAttribute('aria-label', 'Tagesberichte');
+
+        const tabs = cards.map(function (card, index) {
+            const day = card.getAttribute('data-day') || String(index + 1);
+            const panelId = 'bs_day_panel_' + day;
+            const tabId = 'bs_day_tab_' + day;
+
+            card.id = panelId;
+            card.setAttribute('role', 'tabpanel');
+            card.setAttribute('aria-labelledby', tabId);
+
+            const isFilled = cardHasContent(card);
+
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'bs_day_tab' + (isFilled ? ' is-filled' : ' is-empty');
+            btn.id = tabId;
+            btn.setAttribute('role', 'tab');
+            btn.setAttribute('data-day', day);
+            btn.setAttribute('aria-controls', panelId);
+            btn.setAttribute('aria-selected', 'false');
+            btn.setAttribute('tabindex', '-1');
+
+            const iconClass = isFilled ? 'fas fa-circle-check' : 'far fa-circle';
+            const srLabel = isFilled ? 'Tag ' + day + ', befuellt' : 'Tag ' + day + ', nur Datum';
+            btn.setAttribute('aria-label', srLabel);
+            btn.innerHTML = '<i class="' + iconClass + '" aria-hidden="true"></i><span>T' + day + '</span>';
+
+            tablist.appendChild(btn);
+            return btn;
+        });
+
+        // Tab-Leiste nach Section-Title einfuegen
+        const sectionTitle = section.querySelector('.bs_section_title');
+        if (sectionTitle && sectionTitle.nextSibling) {
+            section.insertBefore(tablist, sectionTitle.nextSibling);
+        } else {
+            section.insertBefore(tablist, section.firstChild);
+        }
+
+        // Alle Karten ausblenden, ersten Tab aktivieren
+        cards.forEach(function (c) { c.classList.add('hidden'); });
+        activateTab(0, false);
+
+        function activateTab(idx, focusTab) {
+            tabs.forEach(function (t, i) {
+                const isActive = (i === idx);
+                t.classList.toggle('is-active', isActive);
+                t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                t.setAttribute('tabindex', isActive ? '0' : '-1');
+                cards[i].classList.toggle('hidden', !isActive);
             });
-            if (!hasContent) {
-                card.classList.add('hidden');
+            if (focusTab) tabs[idx].focus();
+        }
+
+        tablist.addEventListener('click', function (e) {
+            const btn = e.target.closest('.bs_day_tab');
+            if (!btn) return;
+            const idx = tabs.indexOf(btn);
+            if (idx !== -1) activateTab(idx, true);
+        });
+
+        tablist.addEventListener('keydown', function (e) {
+            const currentIdx = tabs.indexOf(document.activeElement);
+            if (currentIdx === -1) return;
+            let nextIdx = null;
+            if (e.key === 'ArrowRight') nextIdx = (currentIdx + 1) % tabs.length;
+            else if (e.key === 'ArrowLeft') nextIdx = (currentIdx - 1 + tabs.length) % tabs.length;
+            else if (e.key === 'Home') nextIdx = 0;
+            else if (e.key === 'End') nextIdx = tabs.length - 1;
+            if (nextIdx !== null) {
+                e.preventDefault();
+                activateTab(nextIdx, true);
             }
         });
     }
 
+    function cardHasContent(card) {
+        // Datum wird von Moodle automatisch gesetzt -> ausschliessen
+        const selectors = '.bs_text_content, .bs_aufgabe_text, .bs_info_value:not(.bs_datum_container)';
+        const els = card.querySelectorAll(selectors);
+        return Array.from(els).some(function (el) {
+            return el.textContent.trim() !== '';
+        });
+    }
+
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', hideEmptyDayCards);
+        document.addEventListener('DOMContentLoaded', initializeDayTabs);
     } else {
-        hideEmptyDayCards();
+        initializeDayTabs();
     }
 
     if (window.BerichtsheftTemplate) {
-        window.BerichtsheftTemplate.hideEmptyDayCards = hideEmptyDayCards;
+        window.BerichtsheftTemplate.initializeDayTabs = initializeDayTabs;
     }
 })();
