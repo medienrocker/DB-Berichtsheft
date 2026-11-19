@@ -1,22 +1,24 @@
-<div class="bs_wrapper">
-
-    <div class="bs_header_banner">
-        <i class="fas fa-book-open"></i>
-        <h1 class="bs_header_title">Dein feedBOOK - Das smarte Berichtsheft</h1>
+<div class="bs_page" data-bs-view="list">
+  <header class="bs_banner">
+    <div class="bs_banner_left">
+      <a href="https://bildungssprit.de" target="_blank" rel="noopener" class="bs_banner_logo" title="bildungssprit.de besuchen (öffnet in neuem Tab)">
+        <img src="https://img.bildungssprit.de/dbimg/bildungssprit_logo.png" alt="bildungssprit Logo, zur Website" title="bildungssprit.de" class="bs_logo_img">
+      </a>
+      <span class="bs_banner_title">feedBOOK <span class="bs_banner_subtitle">Das smarte Berichtsheft</span></span>
     </div>
-    <div class="bs_accent_line"></div>
-
-    <table class="bs_list_table" id="berichtsheft_list">
+  </header>
+  <div class="bs_main">
+    <div class="bs_table_wrapper">
+      <div class="bs_table_scroll">
+      <table class="bs_table" id="bs_berichtsheft_list">
         <thead>
-            <tr>
-                <th class="bs_th_name">Name</th>
-                <th class="bs_th_zeitraum">Zeitraum</th>
-                <th class="bs_th_beruf">Beruf</th>
-                <th class="bs_th_betrieb">Betrieb</th>
-                <th class="bs_th_highlight">
-                    <i class="fas fa-trophy" title="Highlight der Woche"></i>
-                </th>
-                <th class="bs_th_actions">Aktionen</th>
-            </tr>
+          <tr>
+            <th class="bs_th bs_th_user" scope="col">Name</th>
+            <th class="bs_th bs_th_zeitraum" scope="col">Zeitraum</th>
+            <th class="bs_th bs_th_beruf" scope="col">Beruf</th>
+            <th class="bs_th bs_th_betrieb" scope="col">Betrieb</th>
+            <th class="bs_th bs_th_highlight" scope="col"><i class="fa fa-trophy bs_icon_deco" aria-hidden="true"></i><span class="bs_sr_only">Highlight der Woche</span></th>
+            <th class="bs_th bs_th_actions" scope="col"><span class="bs_sr_only">Aktionen</span></th>
+          </tr>
         </thead>
         <tbody>

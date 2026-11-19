@@ -1,430 +1,286 @@
-<div class="bs_berichtsheft_add">
-
-    <div class="bs_header_banner">
-        <i class="fas fa-book-open"></i>
-        <h1 class="bs_header_title">Dein feedBOOK - Das smarte Berichtsheft</h1>
+<div class="bs_page" data-bs-view="add">
+  <header class="bs_banner">
+    <div class="bs_banner_left">
+      <a href="https://bildungssprit.de" target="_blank" rel="noopener" class="bs_banner_logo" title="bildungssprit.de besuchen (öffnet in neuem Tab)">
+        <img src="https://img.bildungssprit.de/dbimg/bildungssprit_logo.png" alt="bildungssprit Logo, zur Website" title="bildungssprit.de" class="bs_logo_img">
+      </a>
+      <span class="bs_banner_title">feedBOOK <span class="bs_banner_subtitle">Das smarte Berichtsheft</span></span>
     </div>
-    <div class="bs_accent_line"></div>
-
-    <section class="bs_section bs_allgemeine_angaben">
-        <h2 class="bs_section_title">
-            <i class="fas fa-info-circle"></i> Allgemeine Angaben
-        </h2>
-
-        <div class="bs_question_block">
-            <label class="bs_question">
-                <i class="fas fa-clock"></i> Durchschnittliche Arbeitszeit in Stunden pro Tag
-            </label>
-            [[Arbeitszeit]]
+  </header>
+  <div class="bs_main">
+    <div class="bs_card">
+      <section class="bs_section bs_allgemeine_angaben">
+        <h2 class="bs_section_title"><i class="fa fa-circle-info bs_icon_deco" aria-hidden="true"></i> Allgemeine Angaben</h2>
+        <div class="bs_field_group bs_field_group_inline" data-bs-field="Arbeitszeit" data-bs-required="true">
+          <label class="bs_question" id="bs_lbl_Arbeitszeit"><i class="fa fa-clock bs_icon_deco" aria-hidden="true"></i> Durchschnittliche Arbeitszeit in Stunden pro Tag</label>
+          [[Arbeitszeit]]
         </div>
-
-        <div class="bs_question_block">
-            <label class="bs_question">
-                <i class="fas fa-briefcase"></i> Beruf oder Berufsfeld des Praktikums
-            </label>
-            [[Praktikumsberuf]]
+        <div class="bs_field_group" data-bs-field="Praktikumsberuf" data-bs-required="true">
+          <label class="bs_question" id="bs_lbl_Praktikumsberuf"><i class="fa fa-briefcase bs_icon_deco" aria-hidden="true"></i> Beruf oder Berufsfeld des Praktikums</label>
+          [[Praktikumsberuf]]
         </div>
-
-        <div class="bs_question_block">
-            <label class="bs_question">
-                <i class="fas fa-building"></i> Name des Praktikumsbetriebs
-            </label>
-            [[Praktikumsbetrieb]]
+        <div class="bs_field_group" data-bs-field="Praktikumsbetrieb" data-bs-required="true">
+          <label class="bs_question" id="bs_lbl_Praktikumsbetrieb"><i class="fa fa-building bs_icon_deco" aria-hidden="true"></i> Name des Praktikumsbetriebs</label>
+          [[Praktikumsbetrieb]]
         </div>
-
-        <div class="bs_question_block">
-            <label class="bs_question">
-                <i class="fas fa-map-marker-alt"></i> Abteilung oder genauer Arbeitsort
-            </label>
-            [[Abteilung]]
+        <div class="bs_field_group" data-bs-field="Abteilung">
+          <label class="bs_question" id="bs_lbl_Abteilung"><i class="fa fa-location-dot bs_icon_deco" aria-hidden="true"></i> Abteilung oder genauer Arbeitsort</label>
+          [[Abteilung]]
         </div>
-
-        <div class="bs_question_block">
-            <label class="bs_question">
-                <i class="fas fa-user-tie"></i> Name des Betreuers im Betrieb
-            </label>
-            [[Betreuer]]
+        <div class="bs_field_group" data-bs-field="Betreuer">
+          <label class="bs_question" id="bs_lbl_Betreuer"><i class="fa fa-user-tie bs_icon_deco" aria-hidden="true"></i> Name der Betreuungsperson im Betrieb</label>
+          [[Betreuer]]
         </div>
-    </section>
-
-    <section class="bs_section bs_tagesberichte">
-        <h2 class="bs_section_title">
-            <i class="fas fa-calendar-week"></i> Tagesberichte
-        </h2>
-
+      </section>
+      <section class="bs_section bs_tagesberichte">
+        <h2 class="bs_section_title"><i class="fa fa-calendar-week bs_icon_deco" aria-hidden="true"></i> Tagesberichte</h2>
         <div class="bs_tagesbericht" data-day="1">
-            <h3 class="bs_day_title">
-                <i class="fas fa-calendar-day"></i> Tag 1
-            </h3>
-
-            <div class="bs_question_block">
-                <label class="bs_question">
-                    <i class="fas fa-calendar"></i> Datum Tagesbericht 1
-                </label>
-                [[Datum1]]
+          <h3 class="bs_day_title" tabindex="-1"><i class="fa fa-calendar-day bs_icon_deco" aria-hidden="true"></i> Tag 1</h3>
+          <div class="bs_field_group" data-bs-field="Datum1">
+            <label class="bs_question" id="bs_lbl_Datum1"><i class="fa fa-calendar bs_icon_deco" aria-hidden="true"></i> Datum von Tag 1</label>
+            [[Datum1]]
+          </div>
+          <div class="bs_field_group bs_field_group_highlight" data-bs-field="Gefallen1">
+            <label class="bs_question" id="bs_lbl_Gefallen1"><i class="fa fa-star bs_icon_deco" aria-hidden="true"></i> Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</label>
+            [[Gefallen1]]
+          </div>
+          <div class="bs_aufgaben_block">
+            <h4 class="bs_subtitle"><i class="fa fa-list-check bs_icon_deco" aria-hidden="true"></i> Meine Hauptaufgaben heute</h4>
+            <div class="bs_field_group" data-bs-field="Aufgabe1_1">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe1_1">In den ersten 2 Stunden</label>
+              [[Aufgabe1_1]]
             </div>
-
-            <div class="bs_question_block bs_highlight_question">
-                <label class="bs_question">
-                    <i class="fas fa-star"></i> Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?
-                </label>
-                [[Gefallen1]]
+            <div class="bs_field_group" data-bs-field="Aufgabe1_2">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe1_2">In den zweiten 2 Stunden</label>
+              [[Aufgabe1_2]]
             </div>
-
-            <div class="bs_aufgaben_block">
-                <h4 class="bs_subtitle">
-                    <i class="fas fa-tasks"></i> Meine Hauptaufgaben heute
-                </h4>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den ersten 2 Stunden</label>
-                    [[Aufgabe1_1]]
-                </div>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den zweiten 2 Stunden</label>
-                    [[Aufgabe1_2]]
-                </div>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den dritten 2 Stunden</label>
-                    [[Aufgabe1_3]]
-                </div>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den letzten 2 Stunden</label>
-                    [[Aufgabe1_4]]
-                </div>
+            <div class="bs_field_group" data-bs-field="Aufgabe1_3">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe1_3">In den dritten 2 Stunden</label>
+              [[Aufgabe1_3]]
             </div>
-
-            <div class="bs_question_block">
-                <label class="bs_question">
-                    <i class="fas fa-users"></i> Mit wem habe ich heute am meisten gearbeitet?
-                </label>
-                [[Zusammenarbeit1]]
+            <div class="bs_field_group" data-bs-field="Aufgabe1_4">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe1_4">In den letzten 2 Stunden</label>
+              [[Aufgabe1_4]]
             </div>
+          </div>
+          <div class="bs_field_group" data-bs-field="Zusammenarbeit1">
+            <label class="bs_question" id="bs_lbl_Zusammenarbeit1"><i class="fa fa-users bs_icon_deco" aria-hidden="true"></i> Mit wem habe ich heute am meisten gearbeitet?</label>
+            [[Zusammenarbeit1]]
+          </div>
         </div>
-
         <div class="bs_tagesbericht" data-day="2">
-            <h3 class="bs_day_title">
-                <i class="fas fa-calendar-day"></i> Tag 2
-            </h3>
-
-            <div class="bs_question_block">
-                <label class="bs_question">
-                    <i class="fas fa-calendar"></i> Datum Tagesbericht 2
-                </label>
-                [[Datum2]]
+          <h3 class="bs_day_title" tabindex="-1"><i class="fa fa-calendar-day bs_icon_deco" aria-hidden="true"></i> Tag 2</h3>
+          <div class="bs_field_group" data-bs-field="Datum2">
+            <label class="bs_question" id="bs_lbl_Datum2"><i class="fa fa-calendar bs_icon_deco" aria-hidden="true"></i> Datum von Tag 2</label>
+            [[Datum2]]
+          </div>
+          <div class="bs_field_group bs_field_group_highlight" data-bs-field="Gefallen2">
+            <label class="bs_question" id="bs_lbl_Gefallen2"><i class="fa fa-star bs_icon_deco" aria-hidden="true"></i> Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</label>
+            [[Gefallen2]]
+          </div>
+          <div class="bs_aufgaben_block">
+            <h4 class="bs_subtitle"><i class="fa fa-list-check bs_icon_deco" aria-hidden="true"></i> Meine Hauptaufgaben heute</h4>
+            <div class="bs_field_group" data-bs-field="Aufgabe2_1">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe2_1">In den ersten 2 Stunden</label>
+              [[Aufgabe2_1]]
             </div>
-
-            <div class="bs_question_block bs_highlight_question">
-                <label class="bs_question">
-                    <i class="fas fa-star"></i> Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?
-                </label>
-                [[Gefallen2]]
+            <div class="bs_field_group" data-bs-field="Aufgabe2_2">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe2_2">In den zweiten 2 Stunden</label>
+              [[Aufgabe2_2]]
             </div>
-
-            <div class="bs_aufgaben_block">
-                <h4 class="bs_subtitle">
-                    <i class="fas fa-tasks"></i> Meine Hauptaufgaben heute
-                </h4>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den ersten 2 Stunden</label>
-                    [[Aufgabe2_1]]
-                </div>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den zweiten 2 Stunden</label>
-                    [[Aufgabe2_2]]
-                </div>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den dritten 2 Stunden</label>
-                    [[Aufgabe2_3]]
-                </div>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den letzten 2 Stunden</label>
-                    [[Aufgabe2_4]]
-                </div>
+            <div class="bs_field_group" data-bs-field="Aufgabe2_3">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe2_3">In den dritten 2 Stunden</label>
+              [[Aufgabe2_3]]
             </div>
-
-            <div class="bs_question_block">
-                <label class="bs_question">
-                    <i class="fas fa-users"></i> Mit wem habe ich heute am meisten gearbeitet?
-                </label>
-                [[Zusammenarbeit2]]
+            <div class="bs_field_group" data-bs-field="Aufgabe2_4">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe2_4">In den letzten 2 Stunden</label>
+              [[Aufgabe2_4]]
             </div>
+          </div>
+          <div class="bs_field_group" data-bs-field="Zusammenarbeit2">
+            <label class="bs_question" id="bs_lbl_Zusammenarbeit2"><i class="fa fa-users bs_icon_deco" aria-hidden="true"></i> Mit wem habe ich heute am meisten gearbeitet?</label>
+            [[Zusammenarbeit2]]
+          </div>
         </div>
-
         <div class="bs_tagesbericht" data-day="3">
-            <h3 class="bs_day_title">
-                <i class="fas fa-calendar-day"></i> Tag 3
-            </h3>
-
-            <div class="bs_question_block">
-                <label class="bs_question">
-                    <i class="fas fa-calendar"></i> Datum Tagesbericht 3
-                </label>
-                [[Datum3]]
+          <h3 class="bs_day_title" tabindex="-1"><i class="fa fa-calendar-day bs_icon_deco" aria-hidden="true"></i> Tag 3</h3>
+          <div class="bs_field_group" data-bs-field="Datum3">
+            <label class="bs_question" id="bs_lbl_Datum3"><i class="fa fa-calendar bs_icon_deco" aria-hidden="true"></i> Datum von Tag 3</label>
+            [[Datum3]]
+          </div>
+          <div class="bs_field_group bs_field_group_highlight" data-bs-field="Gefallen3">
+            <label class="bs_question" id="bs_lbl_Gefallen3"><i class="fa fa-star bs_icon_deco" aria-hidden="true"></i> Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</label>
+            [[Gefallen3]]
+          </div>
+          <div class="bs_aufgaben_block">
+            <h4 class="bs_subtitle"><i class="fa fa-list-check bs_icon_deco" aria-hidden="true"></i> Meine Hauptaufgaben heute</h4>
+            <div class="bs_field_group" data-bs-field="Aufgabe3_1">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe3_1">In den ersten 2 Stunden</label>
+              [[Aufgabe3_1]]
             </div>
-
-            <div class="bs_question_block bs_highlight_question">
-                <label class="bs_question">
-                    <i class="fas fa-star"></i> Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?
-                </label>
-                [[Gefallen3]]
+            <div class="bs_field_group" data-bs-field="Aufgabe3_2">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe3_2">In den zweiten 2 Stunden</label>
+              [[Aufgabe3_2]]
             </div>
-
-            <div class="bs_aufgaben_block">
-                <h4 class="bs_subtitle">
-                    <i class="fas fa-tasks"></i> Meine Hauptaufgaben heute
-                </h4>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den ersten 2 Stunden</label>
-                    [[Aufgabe3_1]]
-                </div>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den zweiten 2 Stunden</label>
-                    [[Aufgabe3_2]]
-                </div>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den dritten 2 Stunden</label>
-                    [[Aufgabe3_3]]
-                </div>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den letzten 2 Stunden</label>
-                    [[Aufgabe3_4]]
-                </div>
+            <div class="bs_field_group" data-bs-field="Aufgabe3_3">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe3_3">In den dritten 2 Stunden</label>
+              [[Aufgabe3_3]]
             </div>
-
-            <div class="bs_question_block">
-                <label class="bs_question">
-                    <i class="fas fa-users"></i> Mit wem habe ich heute am meisten gearbeitet?
-                </label>
-                [[Zusammenarbeit3]]
+            <div class="bs_field_group" data-bs-field="Aufgabe3_4">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe3_4">In den letzten 2 Stunden</label>
+              [[Aufgabe3_4]]
             </div>
+          </div>
+          <div class="bs_field_group" data-bs-field="Zusammenarbeit3">
+            <label class="bs_question" id="bs_lbl_Zusammenarbeit3"><i class="fa fa-users bs_icon_deco" aria-hidden="true"></i> Mit wem habe ich heute am meisten gearbeitet?</label>
+            [[Zusammenarbeit3]]
+          </div>
         </div>
-
         <div class="bs_tagesbericht" data-day="4">
-            <h3 class="bs_day_title">
-                <i class="fas fa-calendar-day"></i> Tag 4
-            </h3>
-
-            <div class="bs_question_block">
-                <label class="bs_question">
-                    <i class="fas fa-calendar"></i> Datum Tagesbericht 4
-                </label>
-                [[Datum4]]
+          <h3 class="bs_day_title" tabindex="-1"><i class="fa fa-calendar-day bs_icon_deco" aria-hidden="true"></i> Tag 4</h3>
+          <div class="bs_field_group" data-bs-field="Datum4">
+            <label class="bs_question" id="bs_lbl_Datum4"><i class="fa fa-calendar bs_icon_deco" aria-hidden="true"></i> Datum von Tag 4</label>
+            [[Datum4]]
+          </div>
+          <div class="bs_field_group bs_field_group_highlight" data-bs-field="Gefallen4">
+            <label class="bs_question" id="bs_lbl_Gefallen4"><i class="fa fa-star bs_icon_deco" aria-hidden="true"></i> Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</label>
+            [[Gefallen4]]
+          </div>
+          <div class="bs_aufgaben_block">
+            <h4 class="bs_subtitle"><i class="fa fa-list-check bs_icon_deco" aria-hidden="true"></i> Meine Hauptaufgaben heute</h4>
+            <div class="bs_field_group" data-bs-field="Aufgabe4_1">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe4_1">In den ersten 2 Stunden</label>
+              [[Aufgabe4_1]]
             </div>
-
-            <div class="bs_question_block bs_highlight_question">
-                <label class="bs_question">
-                    <i class="fas fa-star"></i> Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?
-                </label>
-                [[Gefallen4]]
+            <div class="bs_field_group" data-bs-field="Aufgabe4_2">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe4_2">In den zweiten 2 Stunden</label>
+              [[Aufgabe4_2]]
             </div>
-
-            <div class="bs_aufgaben_block">
-                <h4 class="bs_subtitle">
-                    <i class="fas fa-tasks"></i> Meine Hauptaufgaben heute
-                </h4>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den ersten 2 Stunden</label>
-                    [[Aufgabe4_1]]
-                </div>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den zweiten 2 Stunden</label>
-                    [[Aufgabe4_2]]
-                </div>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den dritten 2 Stunden</label>
-                    [[Aufgabe4_3]]
-                </div>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den letzten 2 Stunden</label>
-                    [[Aufgabe4_4]]
-                </div>
+            <div class="bs_field_group" data-bs-field="Aufgabe4_3">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe4_3">In den dritten 2 Stunden</label>
+              [[Aufgabe4_3]]
             </div>
-
-            <div class="bs_question_block">
-                <label class="bs_question">
-                    <i class="fas fa-users"></i> Mit wem habe ich heute am meisten gearbeitet?
-                </label>
-                [[Zusammenarbeit4]]
+            <div class="bs_field_group" data-bs-field="Aufgabe4_4">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe4_4">In den letzten 2 Stunden</label>
+              [[Aufgabe4_4]]
             </div>
+          </div>
+          <div class="bs_field_group" data-bs-field="Zusammenarbeit4">
+            <label class="bs_question" id="bs_lbl_Zusammenarbeit4"><i class="fa fa-users bs_icon_deco" aria-hidden="true"></i> Mit wem habe ich heute am meisten gearbeitet?</label>
+            [[Zusammenarbeit4]]
+          </div>
         </div>
-
         <div class="bs_tagesbericht" data-day="5">
-            <h3 class="bs_day_title">
-                <i class="fas fa-calendar-day"></i> Tag 5
-            </h3>
-
-            <div class="bs_question_block">
-                <label class="bs_question">
-                    <i class="fas fa-calendar"></i> Datum Tagesbericht 5
-                </label>
-                [[Datum5]]
+          <h3 class="bs_day_title" tabindex="-1"><i class="fa fa-calendar-day bs_icon_deco" aria-hidden="true"></i> Tag 5</h3>
+          <div class="bs_field_group" data-bs-field="Datum5">
+            <label class="bs_question" id="bs_lbl_Datum5"><i class="fa fa-calendar bs_icon_deco" aria-hidden="true"></i> Datum von Tag 5</label>
+            [[Datum5]]
+          </div>
+          <div class="bs_field_group bs_field_group_highlight" data-bs-field="Gefallen5">
+            <label class="bs_question" id="bs_lbl_Gefallen5"><i class="fa fa-star bs_icon_deco" aria-hidden="true"></i> Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</label>
+            [[Gefallen5]]
+          </div>
+          <div class="bs_aufgaben_block">
+            <h4 class="bs_subtitle"><i class="fa fa-list-check bs_icon_deco" aria-hidden="true"></i> Meine Hauptaufgaben heute</h4>
+            <div class="bs_field_group" data-bs-field="Aufgabe5_1">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe5_1">In den ersten 2 Stunden</label>
+              [[Aufgabe5_1]]
             </div>
-
-            <div class="bs_question_block bs_highlight_question">
-                <label class="bs_question">
-                    <i class="fas fa-star"></i> Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?
-                </label>
-                [[Gefallen5]]
+            <div class="bs_field_group" data-bs-field="Aufgabe5_2">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe5_2">In den zweiten 2 Stunden</label>
+              [[Aufgabe5_2]]
             </div>
-
-            <div class="bs_aufgaben_block">
-                <h4 class="bs_subtitle">
-                    <i class="fas fa-tasks"></i> Meine Hauptaufgaben heute
-                </h4>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den ersten 2 Stunden</label>
-                    [[Aufgabe5_1]]
-                </div>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den zweiten 2 Stunden</label>
-                    [[Aufgabe5_2]]
-                </div>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den dritten 2 Stunden</label>
-                    [[Aufgabe5_3]]
-                </div>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den letzten 2 Stunden</label>
-                    [[Aufgabe5_4]]
-                </div>
+            <div class="bs_field_group" data-bs-field="Aufgabe5_3">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe5_3">In den dritten 2 Stunden</label>
+              [[Aufgabe5_3]]
             </div>
-
-            <div class="bs_question_block">
-                <label class="bs_question">
-                    <i class="fas fa-users"></i> Mit wem habe ich heute am meisten gearbeitet?
-                </label>
-                [[Zusammenarbeit5]]
+            <div class="bs_field_group" data-bs-field="Aufgabe5_4">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe5_4">In den letzten 2 Stunden</label>
+              [[Aufgabe5_4]]
             </div>
+          </div>
+          <div class="bs_field_group" data-bs-field="Zusammenarbeit5">
+            <label class="bs_question" id="bs_lbl_Zusammenarbeit5"><i class="fa fa-users bs_icon_deco" aria-hidden="true"></i> Mit wem habe ich heute am meisten gearbeitet?</label>
+            [[Zusammenarbeit5]]
+          </div>
         </div>
-
         <div class="bs_tagesbericht" data-day="6">
-            <h3 class="bs_day_title">
-                <i class="fas fa-calendar-day"></i> Tag 6
-            </h3>
-
-            <div class="bs_question_block">
-                <label class="bs_question">
-                    <i class="fas fa-calendar"></i> Datum Tagesbericht 6
-                </label>
-                [[Datum6]]
+          <h3 class="bs_day_title" tabindex="-1"><i class="fa fa-calendar-day bs_icon_deco" aria-hidden="true"></i> Tag 6</h3>
+          <div class="bs_field_group" data-bs-field="Datum6">
+            <label class="bs_question" id="bs_lbl_Datum6"><i class="fa fa-calendar bs_icon_deco" aria-hidden="true"></i> Datum von Tag 6</label>
+            [[Datum6]]
+          </div>
+          <div class="bs_field_group bs_field_group_highlight" data-bs-field="Gefallen6">
+            <label class="bs_question" id="bs_lbl_Gefallen6"><i class="fa fa-star bs_icon_deco" aria-hidden="true"></i> Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?</label>
+            [[Gefallen6]]
+          </div>
+          <div class="bs_aufgaben_block">
+            <h4 class="bs_subtitle"><i class="fa fa-list-check bs_icon_deco" aria-hidden="true"></i> Meine Hauptaufgaben heute</h4>
+            <div class="bs_field_group" data-bs-field="Aufgabe6_1">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe6_1">In den ersten 2 Stunden</label>
+              [[Aufgabe6_1]]
             </div>
-
-            <div class="bs_question_block bs_highlight_question">
-                <label class="bs_question">
-                    <i class="fas fa-star"></i> Was hat mir heute besonders gefallen oder was war das Beste an diesem Tag?
-                </label>
-                [[Gefallen6]]
+            <div class="bs_field_group" data-bs-field="Aufgabe6_2">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe6_2">In den zweiten 2 Stunden</label>
+              [[Aufgabe6_2]]
             </div>
-
-            <div class="bs_aufgaben_block">
-                <h4 class="bs_subtitle">
-                    <i class="fas fa-tasks"></i> Meine Hauptaufgaben heute
-                </h4>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den ersten 2 Stunden</label>
-                    [[Aufgabe6_1]]
-                </div>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den zweiten 2 Stunden</label>
-                    [[Aufgabe6_2]]
-                </div>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den dritten 2 Stunden</label>
-                    [[Aufgabe6_3]]
-                </div>
-
-                <div class="bs_question_block">
-                    <label class="bs_question_time">Hauptaufgaben in den letzten 2 Stunden</label>
-                    [[Aufgabe6_4]]
-                </div>
+            <div class="bs_field_group" data-bs-field="Aufgabe6_3">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe6_3">In den dritten 2 Stunden</label>
+              [[Aufgabe6_3]]
             </div>
-
-            <div class="bs_question_block">
-                <label class="bs_question">
-                    <i class="fas fa-users"></i> Mit wem habe ich heute am meisten gearbeitet?
-                </label>
-                [[Zusammenarbeit6]]
+            <div class="bs_field_group" data-bs-field="Aufgabe6_4">
+              <label class="bs_question_time" id="bs_lbl_Aufgabe6_4">In den letzten 2 Stunden</label>
+              [[Aufgabe6_4]]
             </div>
+          </div>
+          <div class="bs_field_group" data-bs-field="Zusammenarbeit6">
+            <label class="bs_question" id="bs_lbl_Zusammenarbeit6"><i class="fa fa-users bs_icon_deco" aria-hidden="true"></i> Mit wem habe ich heute am meisten gearbeitet?</label>
+            [[Zusammenarbeit6]]
+          </div>
         </div>
-    </section>
-
-    <section class="bs_section bs_bewertung">
-        <h2 class="bs_section_title">
-            <i class="fas fa-chart-line"></i> Persönliche Bewertung der Woche
-        </h2>
-
-        <div class="bs_question_block">
-            <label class="bs_question">
-                <i class="fas fa-thumbs-down"></i> Beschreibe ein Ding, das du in dieser Woche nicht so gut gefunden hast (1)
-            </label>
-            [[NichtGut1]]
+        <p class="bs_sr_only" id="bs_day_status" role="status" aria-live="polite"></p>
+      </section>
+      <section class="bs_section bs_bewertung">
+        <h2 class="bs_section_title"><i class="fa fa-chart-line bs_icon_deco" aria-hidden="true"></i> Persönliche Bewertung der Woche</h2>
+        <div class="bs_field_group" data-bs-field="NichtGut1">
+          <label class="bs_question" id="bs_lbl_NichtGut1"><i class="fa fa-thumbs-down bs_icon_deco" aria-hidden="true"></i> Was fand ich in dieser Woche nicht so gut?</label>
+          [[NichtGut1]]
         </div>
-
-        <div class="bs_question_block">
-            <label class="bs_question">
-                <i class="fas fa-thumbs-up"></i> Beschreibe ein Ding, das du in dieser Woche gut gefunden hast
-            </label>
-            [[Gut1]]
+        <div class="bs_field_group" data-bs-field="Gut1">
+          <label class="bs_question" id="bs_lbl_Gut1"><i class="fa fa-thumbs-up bs_icon_deco" aria-hidden="true"></i> Was fand ich in dieser Woche gut?</label>
+          [[Gut1]]
         </div>
-
-        <div class="bs_question_block bs_learning_question">
-            <label class="bs_question">
-                <i class="fas fa-graduation-cap"></i> Was habe ich diese Woche Neues gelernt? Oder: Was habe ich diese Woche zum ersten Mal gemacht?
-            </label>
-            [[NeuesGelernt]]
+        <div class="bs_field_group bs_field_group_learning" data-bs-field="NeuesGelernt">
+          <label class="bs_question" id="bs_lbl_NeuesGelernt"><i class="fa fa-graduation-cap bs_icon_deco" aria-hidden="true"></i> Was habe ich diese Woche Neues gelernt? Oder: Was habe ich diese Woche zum ersten Mal gemacht?</label>
+          [[NeuesGelernt]]
         </div>
-
-        <div class="bs_question_block bs_highlight_question">
-            <label class="bs_question">
-                <i class="fas fa-trophy"></i> Das Highlight dieser Woche war...
-            </label>
-            [[Highlight]]
+        <div class="bs_field_group bs_field_group_highlight" data-bs-field="Highlight">
+          <label class="bs_question" id="bs_lbl_Highlight"><i class="fa fa-trophy bs_icon_deco" aria-hidden="true"></i> Das Highlight dieser Woche war …</label>
+          [[Highlight]]
         </div>
-
-        <div class="bs_question_block">
-            <label class="bs_question">
-                <i class="fas fa-comment-dots"></i> Folgendes muss ich in der nächsten Woche ansprechen / klären
-            </label>
-            [[Klaerungsbedarf]]
+        <div class="bs_field_group" data-bs-field="Klaerungsbedarf">
+          <label class="bs_question" id="bs_lbl_Klaerungsbedarf"><i class="fa fa-comment-dots bs_icon_deco" aria-hidden="true"></i> Das muss ich in der nächsten Woche ansprechen oder klären</label>
+          [[Klaerungsbedarf]]
         </div>
-    </section>
-
+        <div class="bs_is_hidden" data-bs-field="Wochenzeitraum" aria-hidden="true">
+          [[Wochenzeitraum]]
+        </div>
+      </section>
+    </div>
     <footer class="bs_footer_banner">
-        <div class="bs_footer_left">
-            <img src="https://img.bildungssprit.de/dbimg/default.png" alt="feedBOOK - Datenbank-Vorschaubild" title="feedBOOK - Das smarte Berichtsheft" class="bs_footer_dbimg">
-        </div>
-        <div class="bs_footer_center">
-            <span class="bs_footer_title">feedBOOK - Das smarte Berichtsheft</span>
-        </div>
-        <div class="bs_footer_right">
-            <span class="bs_footer_license">CC-BY-SA <a href="https://linktr.ee/bildungssprit" target="_blank" rel="noopener" title="bildungssprit auf Linktree">bildungssprit</a></span>
-            <a href="https://bildungssprit.de" target="_blank" rel="noopener" class="bs_footer_logo_link" title="bildungssprit.de besuchen">
-                <img src="https://img.bildungssprit.de/dbimg/bildungssprit_logo.png" alt="bildungssprit Logo - zur Website" title="bildungssprit.de" class="bs_footer_logo">
-            </a>
-        </div>
+      <div class="bs_footer_left">
+        <img src="https://img.bildungssprit.de/dbimg/default.png" alt="bildungssprit Bildmarke" title="bildungssprit" class="bs_footer_dbimg">
+      </div>
+      <div class="bs_footer_center">
+        <span class="bs_footer_title">feedBOOK</span>
+        <span class="bs_footer_build" title="Baukennung dieses Vorlagensatzes (UTC)">Build 202611192009</span>
+      </div>
+      <div class="bs_footer_right">
+        <span class="bs_footer_license"><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.de" target="_blank" rel="noopener license" title="Lizenztext CC BY-SA 4.0 (öffnet in neuem Tab)">CC BY-SA 4.0</a> <a href="https://linktr.ee/bildungssprit" target="_blank" rel="noopener" title="bildungssprit auf Linktree (öffnet in neuem Tab)">bildungssprit</a></span>
+        <a href="https://bildungssprit.de" target="_blank" rel="noopener" class="bs_footer_logo_link" title="bildungssprit.de besuchen (öffnet in neuem Tab)">
+          <img src="https://img.bildungssprit.de/dbimg/bildungssprit_logo.png" alt="bildungssprit Logo, zur Website" title="bildungssprit.de" class="bs_footer_logo">
+        </a>
+      </div>
     </footer>
-
+  </div>
 </div>

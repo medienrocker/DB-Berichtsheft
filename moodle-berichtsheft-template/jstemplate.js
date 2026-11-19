@@ -1,417 +1,446 @@
-/* CC-BY-SA bildungssprit.de | Falk Szyba @medienrocker */
-
-/**
- * Berichtsheft Template JavaScript
- * - Automatische Wochentag-Berechnung (add view)
- * - Wochenzeitraum-Berechnung (list view)
- * - Datums-Formatierung (single view)
- * - Tag hinzufuegen / entfernen (add view)
- */
+/* CC BY-SA 4.0 bildungssprit.de | Falk Szyba @medienrocker */
 
 (function () {
-    'use strict';
+  'use strict';
 
-    document.addEventListener('DOMContentLoaded', function () {
-        initializeDayReports();
-        initializeWeekdayCalculation();
-        initializeWeekRange();
-        formatDateContainers();
+  var MONTHS = {
+    'januar': 1, 'jan': 1, 'jän': 1, 'january': 1,
+    'februar': 2, 'feb': 2, 'february': 2,
+    'märz': 3, 'maerz': 3, 'mär': 3, 'mrz': 3, 'march': 3,
+    'april': 4, 'apr': 4,
+    'mai': 5, 'may': 5,
+    'juni': 6, 'jun': 6, 'june': 6,
+    'juli': 7, 'jul': 7, 'july': 7,
+    'august': 8, 'aug': 8,
+    'september': 9, 'sep': 9, 'sept': 9,
+    'oktober': 10, 'okt': 10, 'october': 10, 'oct': 10,
+    'november': 11, 'nov': 11,
+    'dezember': 12, 'dez': 12, 'december': 12, 'dec': 12
+  };
+
+  function pad2(value) {
+    var s = String(value);
+    return s.length < 2 ? '0' + s : s;
+  }
+
+  function makeDate(year, month, day) {
+    var d = new Date(Date.UTC(year, month - 1, day));
+    return isNaN(d.getTime()) ? null : d;
+  }
+
+  /* Liest Moodles Datumsanzeige („5. November 2026“), 05.11.2026 oder 2026-11-05. */
+  function parseDate(text) {
+    var s = String(text || '').replace(/\s+/g, ' ').trim();
+    if (!s) {
+      return null;
+    }
+    var m = s.match(/^(\d{1,2})\.?\s+([A-Za-zÄÖÜäöüß]+)\.?\s+(\d{4})$/);
+    if (m && MONTHS[m[2].toLowerCase()]) {
+      return makeDate(parseInt(m[3], 10), MONTHS[m[2].toLowerCase()], parseInt(m[1], 10));
+    }
+    m = s.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
+    if (m) {
+      return makeDate(parseInt(m[3], 10), parseInt(m[2], 10), parseInt(m[1], 10));
+    }
+    m = s.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (m) {
+      return makeDate(parseInt(m[1], 10), parseInt(m[2], 10), parseInt(m[3], 10));
+    }
+    return null;
+  }
+
+  function formatShort(date) {
+    return pad2(date.getUTCDate()) + '.' + pad2(date.getUTCMonth() + 1) + '.' + date.getUTCFullYear();
+  }
+
+  /* Kalenderwoche nach ISO 8601. */
+  function weekNumber(date) {
+    var d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+    var dayNum = d.getUTCDay() || 7;
+    d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+    var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+    return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+  }
+
+  /* „KW 45, 02.11.2026 bis 06.11.2026“ aus einer Liste von Daten, leer ohne Datum. */
+  function weekRange(dates) {
+    var valid = dates.filter(function (d) { return d; }).sort(function (a, b) { return a - b; });
+    if (!valid.length) {
+      return '';
+    }
+    var first = valid[0];
+    var last = valid[valid.length - 1];
+    var text = 'KW ' + weekNumber(first) + ', ' + formatShort(first);
+    if (last.getTime() !== first.getTime()) {
+      text += ' bis ' + formatShort(last);
+    }
+    return text;
+  }
+
+  function hasText(element) {
+    return (element.textContent || '').replace(/\s+/g, '').length > 0;
+  }
+
+  /* ---------- Eingabeansicht ---------- */
+
+  /* Eigenes Label mit dem Eingabefeld verbinden, das Moodle erzeugt. Moodle bringt ein
+     verstecktes Label mit dem Feldnamen mit (zum Beispiel „Aufgabe1_1“). aria-labelledby
+     sorgt dafür, dass Screenreader nur die eigene Frage vorlesen. */
+  function linkLabels(view) {
+    var groups = view.querySelectorAll('.bs_field_group[data-bs-field]');
+    for (var i = 0; i < groups.length; i++) {
+      var group = groups[i];
+      var label = group.querySelector('.bs_question, .bs_question_time');
+      var controls = group.querySelectorAll('input:not([type="hidden"]), select, textarea');
+      if (!label || !label.id || !controls.length) {
+        continue;
+      }
+      var required = group.getAttribute('data-bs-required') === 'true';
+      var fieldset = group.querySelector('fieldset');
+      if (controls.length === 1 && controls[0].type !== 'radio') {
+        if (!controls[0].id) {
+          controls[0].id = 'bs_input_' + group.getAttribute('data-bs-field');
+        }
+        label.setAttribute('for', controls[0].id);
+        controls[0].setAttribute('aria-labelledby', label.id);
+        if (required) {
+          controls[0].setAttribute('aria-required', 'true');
+        }
+      } else if (fieldset) {
+        fieldset.setAttribute('role', 'radiogroup');
+        fieldset.setAttribute('aria-labelledby', label.id);
+        if (required) {
+          fieldset.setAttribute('aria-required', 'true');
+        }
+      } else {
+        group.setAttribute('role', 'group');
+        group.setAttribute('aria-labelledby', label.id);
+      }
+    }
+  }
+
+  function dayHasText(day) {
+    var fields = day.querySelectorAll('input[type="text"], textarea');
+    for (var i = 0; i < fields.length; i++) {
+      if (fields[i].value.replace(/<[^>]*>/g, '').trim() !== '') {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /* Moodle schickt für jedes Datumsfeld immer einen Wert, voreingestellt ist heute.
+     Ausgeblendete Tage bekommen deshalb gesperrte Datumsfelder: Gesperrte Felder
+     sendet der Browser nicht, und der Wochenzeitraum bleibt richtig. */
+  function setDayVisible(day, visible) {
+    day.classList.toggle('bs_is_hidden', !visible);
+    var selects = day.querySelectorAll('[data-bs-field^="Datum"] select');
+    for (var i = 0; i < selects.length; i++) {
+      selects[i].disabled = !visible;
+    }
+  }
+
+  function makeButton(className, iconName, label, action) {
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'bs_button ' + className;
+    button.setAttribute('data-bs-action', action);
+    var icon = document.createElement('i');
+    icon.className = 'fa ' + iconName;
+    icon.setAttribute('aria-hidden', 'true');
+    button.appendChild(icon);
+    button.appendChild(document.createTextNode(' ' + label));
+    return button;
+  }
+
+  function setupDays(view) {
+    var section = view.querySelector('.bs_tagesberichte');
+    if (!section) {
+      return;
+    }
+    var days = Array.prototype.slice.call(section.querySelectorAll('.bs_tagesbericht'));
+    if (!days.length) {
+      return;
+    }
+    var status = view.querySelector('#bs_day_status');
+
+    /* Beim Bearbeiten bleiben alle Tage bis zum letzten mit Text sichtbar. */
+    var visibleCount = 1;
+    days.forEach(function (day, index) {
+      if (dayHasText(day)) {
+        visibleCount = index + 1;
+      }
     });
 
-    /* ------------------------------------------------------------
-       Tagesberichte vorbereiten
-       ------------------------------------------------------------ */
-    function initializeDayReports() {
-        const dayReports = document.querySelectorAll('.bs_day_report');
-        dayReports.forEach(function (report, index) {
-            report.classList.add('bs_day_report_' + (index + 1));
-            report.setAttribute('data-day-index', index + 1);
-        });
+    var controls = document.createElement('div');
+    controls.className = 'bs_day_controls';
+    var addButton = makeButton('bs_button_primary', 'fa-plus', 'Tag hinzufügen', 'add-day');
+    var removeButton = makeButton('bs_button_secondary', 'fa-minus', 'Letzten Tag ausblenden', 'remove-day');
+    controls.appendChild(addButton);
+    controls.appendChild(removeButton);
+    section.insertBefore(controls, status || null);
+
+    function render() {
+      days.forEach(function (day, index) {
+        setDayVisible(day, index < visibleCount);
+      });
+      addButton.hidden = visibleCount >= days.length;
+      removeButton.hidden = visibleCount <= 1;
     }
 
-    /* ------------------------------------------------------------
-       Wochentag hinter Datum anzeigen (add view)
-       ------------------------------------------------------------ */
-    function initializeWeekdayCalculation() {
-        const dateInputs = document.querySelectorAll('input[type="date"]');
-        dateInputs.forEach(function (input) {
-            input.addEventListener('change', function () {
-                updateWeekdayDisplay(this);
-            });
-            if (input.value) {
-                updateWeekdayDisplay(input);
-            }
-        });
+    function announce(text) {
+      if (status) {
+        status.textContent = text;
+      }
     }
 
-    function updateWeekdayDisplay(dateInput) {
-        const dateValue = dateInput.value;
-        if (!dateValue) return;
-        const date = new Date(dateValue);
-        const weekdayNames = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
-        const weekday = weekdayNames[date.getDay()];
-        const daySection = dateInput.closest('.bs_day_report');
-        if (daySection) {
-            const weekdayDisplay = daySection.querySelector('.bs_weekday_display');
-            if (weekdayDisplay) {
-                weekdayDisplay.textContent = ' (' + weekday + ')';
-                weekdayDisplay.style.fontWeight = 'normal';
-                weekdayDisplay.style.color = 'var(--bs_color-text-muted)';
-            }
+    controls.addEventListener('click', function (event) {
+      var button = event.target.closest('[data-bs-action]');
+      if (!button) {
+        return;
+      }
+      if (button.getAttribute('data-bs-action') === 'add-day' && visibleCount < days.length) {
+        visibleCount++;
+        render();
+        var title = days[visibleCount - 1].querySelector('.bs_day_title');
+        if (title) {
+          title.focus();
         }
-    }
+        announce('Tag ' + visibleCount + ' hinzugefügt.');
+      } else if (button.getAttribute('data-bs-action') === 'remove-day' && visibleCount > 1) {
+        visibleCount--;
+        render();
+        (removeButton.hidden ? addButton : removeButton).focus();
+        announce('Tag ' + (visibleCount + 1) + ' ausgeblendet. Text darin bleibt erhalten.');
+      }
+    });
 
-    /* ------------------------------------------------------------
-       Datums-Container in dd.mm.yyyy umformatieren (single view)
-       ------------------------------------------------------------ */
-    function formatDateContainers() {
-        const containers = document.querySelectorAll('.bs_datum_container');
-        containers.forEach(function (el) {
-            const text = el.textContent.trim();
-            const date = parseGermanDate(text);
-            if (date) {
-                el.textContent = formatDateShort(date);
-            }
-        });
-    }
+    render();
+  }
 
-    /* ------------------------------------------------------------
-       Wochenzeitraum berechnen (list view)
-       ------------------------------------------------------------
-       Liest alle 6 Datumswerte aus data-Attributen der Zelle und
-       zeigt entweder:
-         - KW XX, dd.mm.yyyy - dd.mm.yyyy   (mehrere Tage)
-         - KW XX, dd.mm.yyyy                (genau ein Tag)
-         - leeren String                    (kein Tag eingetragen)
-       ------------------------------------------------------------ */
-    function initializeWeekRange() {
-        const cells = document.querySelectorAll('.bs_week_range');
-        cells.forEach(function (el) {
-            const raw = [
-                el.dataset.d1, el.dataset.d2, el.dataset.d3,
-                el.dataset.d4, el.dataset.d5, el.dataset.d6
-            ];
-            const validDates = raw
-                .map(parseGermanDate)
-                .filter(function (d) { return d instanceof Date && !isNaN(d); })
-                .sort(function (a, b) { return a - b; });
-
-            if (validDates.length === 0) {
-                el.textContent = '';
-                return;
-            }
-
-            const first = validDates[0];
-            const last = validDates[validDates.length - 1];
-            const kw = getWeekNumber(first);
-
-            if (first.getTime() === last.getTime()) {
-                el.textContent = 'KW ' + kw + ', ' + formatDateShort(first);
-            } else {
-                el.textContent = 'KW ' + kw + ', ' + formatDateShort(first) + ' - ' + formatDateShort(last);
-            }
-        });
-    }
-
-    /* ------------------------------------------------------------
-       Datums-Parser
-       Akzeptiert:
-         - "4. November 2025"  (deutsches Langformat, Moodle default)
-         - "04.11.2025"        (kurz)
-         - "2025-11-04"        (ISO)
-       ------------------------------------------------------------ */
-    function parseGermanDate(text) {
-        if (!text) return null;
-        text = String(text).trim();
-        if (!text) return null;
-
-        const months = {
-            'januar': 1, 'februar': 2, 'maerz': 3, 'märz': 3, 'april': 4,
-            'mai': 5, 'juni': 6, 'juli': 7, 'august': 8,
-            'september': 9, 'oktober': 10, 'november': 11, 'dezember': 12
-        };
-
-        // Langformat: "4. November 2025"
-        let m = text.match(/^(\d{1,2})\.\s*([A-Za-zäöüÄÖÜß]+)\s+(\d{4})$/);
-        if (m) {
-            const month = months[m[2].toLowerCase()];
-            if (month) {
-                return new Date(Date.UTC(parseInt(m[3], 10), month - 1, parseInt(m[1], 10)));
-            }
-        }
-
-        // Kurzformat: "04.11.2025"
-        m = text.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
-        if (m) {
-            return new Date(Date.UTC(parseInt(m[3], 10), parseInt(m[2], 10) - 1, parseInt(m[1], 10)));
-        }
-
-        // ISO: "2025-11-04"
-        m = text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-        if (m) {
-            return new Date(Date.UTC(parseInt(m[1], 10), parseInt(m[2], 10) - 1, parseInt(m[3], 10)));
-        }
-
+  function selectedDate(group) {
+    var selects = group.querySelectorAll('select');
+    var parts = {};
+    for (var i = 0; i < selects.length; i++) {
+      if (selects[i].disabled) {
         return null;
+      }
+      var name = selects[i].name || '';
+      var key = name.slice(name.lastIndexOf('_') + 1);
+      parts[key] = parseInt(selects[i].value, 10);
+    }
+    if (!parts.day || !parts.month || !parts.year) {
+      return null;
+    }
+    return makeDate(parts.year, parts.month, parts.day);
+  }
+
+  /* Füllt das versteckte Feld Wochenzeitraum beim Speichern aus den sichtbaren Tagen. */
+  function setupWeekField(view) {
+    var holder = view.querySelector('[data-bs-field="Wochenzeitraum"]');
+    var input = holder ? holder.querySelector('input[type="text"]') : null;
+    var form = view.closest('form');
+    if (!input || !form) {
+      return;
+    }
+    form.addEventListener('submit', function () {
+      var groups = view.querySelectorAll('.bs_tagesbericht:not(.bs_is_hidden) [data-bs-field^="Datum"]');
+      var dates = [];
+      for (var i = 0; i < groups.length; i++) {
+        dates.push(selectedDate(groups[i]));
+      }
+      input.value = weekRange(dates);
+    });
+  }
+
+  /* ---------- Einzelansicht ---------- */
+
+  function formatDates(view) {
+    var cells = view.querySelectorAll('.bs_datum_container');
+    for (var i = 0; i < cells.length; i++) {
+      var date = parseDate(cells[i].textContent);
+      if (date) {
+        cells[i].textContent = formatShort(date);
+      }
+    }
+    var saved = view.querySelector('.bs_week_saved');
+    if (saved && !hasText(saved)) {
+      saved.closest('.bs_detail_row').classList.add('bs_is_hidden');
+    }
+  }
+
+  function cardHasContent(card) {
+    var parts = card.querySelectorAll('.bs_text_content, .bs_aufgabe_text, .bs_detail_value:not(.bs_datum_container)');
+    for (var i = 0; i < parts.length; i++) {
+      if (hasText(parts[i])) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /* Reiter T1 bis T6 nach dem ARIA-Muster „Tabs“, mit Pfeiltasten, Pos1 und Ende. */
+  function setupDayTabs(view) {
+    var section = view.querySelector('.bs_tagesberichte');
+    if (!section) {
+      return;
+    }
+    var cards = Array.prototype.slice.call(section.querySelectorAll('.bs_tagesbericht_card'));
+    if (!cards.length) {
+      return;
+    }
+    var tablist = document.createElement('div');
+    tablist.className = 'bs_day_tabs';
+    tablist.setAttribute('role', 'tablist');
+    tablist.setAttribute('aria-label', 'Tagesberichte');
+
+    var tabs = cards.map(function (card, index) {
+      var day = card.getAttribute('data-day') || String(index + 1);
+      var filled = cardHasContent(card);
+      card.id = 'bs_day_panel_' + day;
+      card.setAttribute('role', 'tabpanel');
+      card.setAttribute('aria-labelledby', 'bs_day_tab_' + day);
+      card.setAttribute('tabindex', '0');
+
+      var tab = document.createElement('button');
+      tab.type = 'button';
+      tab.id = 'bs_day_tab_' + day;
+      tab.className = 'bs_day_tab' + (filled ? ' bs_is_filled' : '');
+      tab.setAttribute('role', 'tab');
+      tab.setAttribute('aria-controls', card.id);
+      tab.setAttribute('aria-label', 'Tag ' + day + (filled ? ', ausgefüllt' : ', noch leer'));
+      var icon = document.createElement('i');
+      icon.className = filled ? 'fa fa-circle-check' : 'fa-regular fa-circle';
+      icon.setAttribute('aria-hidden', 'true');
+      var text = document.createElement('span');
+      text.textContent = 'T' + day;
+      tab.appendChild(icon);
+      tab.appendChild(text);
+      tablist.appendChild(tab);
+      return tab;
+    });
+
+    var title = section.querySelector('.bs_section_title');
+    section.insertBefore(tablist, title ? title.nextSibling : section.firstChild);
+
+    function activate(index, focus) {
+      tabs.forEach(function (tab, i) {
+        var active = i === index;
+        tab.setAttribute('aria-selected', active ? 'true' : 'false');
+        tab.setAttribute('tabindex', active ? '0' : '-1');
+        cards[i].classList.toggle('bs_is_hidden', !active);
+      });
+      if (focus) {
+        tabs[index].focus();
+      }
     }
 
-    function formatDateShort(date) {
-        const dd = String(date.getUTCDate()).padStart(2, '0');
-        const mm = String(date.getUTCMonth() + 1).padStart(2, '0');
-        const yyyy = date.getUTCFullYear();
-        return dd + '.' + mm + '.' + yyyy;
+    tablist.addEventListener('click', function (event) {
+      var tab = event.target.closest('.bs_day_tab');
+      if (tab) {
+        activate(tabs.indexOf(tab), true);
+      }
+    });
+
+    tablist.addEventListener('keydown', function (event) {
+      var current = tabs.indexOf(document.activeElement);
+      if (current === -1) {
+        return;
+      }
+      var next = null;
+      if (event.key === 'ArrowRight') {
+        next = (current + 1) % tabs.length;
+      } else if (event.key === 'ArrowLeft') {
+        next = (current - 1 + tabs.length) % tabs.length;
+      } else if (event.key === 'Home') {
+        next = 0;
+      } else if (event.key === 'End') {
+        next = tabs.length - 1;
+      }
+      if (next !== null) {
+        event.preventDefault();
+        activate(next, true);
+      }
+    });
+
+    activate(0, false);
+  }
+
+  /* ---------- Listenansicht ---------- */
+
+  /* Zweizeilig, damit die Tabelle schmal bleibt: „KW 45“ und „02.11. bis 06.11.2026“. */
+  function showWeekCompact(target, dates) {
+    var valid = dates.filter(function (d) { return d; }).sort(function (a, b) { return a - b; });
+    target.textContent = '';
+    if (!valid.length) {
+      return;
     }
-
-    /**
-     * Berechnet die Kalenderwoche (ISO 8601) fuer ein Datum
-     */
-    function getWeekNumber(date) {
-        const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
-        const dayNum = d.getUTCDay() || 7;
-        d.setUTCDate(d.getUTCDate() + 4 - dayNum);
-        const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-        return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
-    }
-
-    /* ------------------------------------------------------------
-       Global Exports
-       ------------------------------------------------------------ */
-    window.BerichtsheftTemplate = {
-        parseGermanDate: parseGermanDate,
-        formatDateShort: formatDateShort,
-        getWeekNumber: getWeekNumber,
-        initializeWeekRange: initializeWeekRange
-    };
-})();
-
-/* ============================================================
-   Day Visibility Toggle (add view)
-   ============================================================ */
-(function () {
-    'use strict';
-
-    function initializeDayControls() {
-        // Nur in der Add-Ansicht aktiv (Single-View nutzt .bs_tagesbericht_card)
-        const addContainer = document.querySelector('.bs_berichtsheft_add');
-        if (!addContainer) return;
-
-        const tagesberichteSection = addContainer.querySelector('.bs_tagesberichte');
-        if (!tagesberichteSection) return;
-
-        const allDays = Array.from(tagesberichteSection.querySelectorAll('.bs_tagesbericht'));
-        if (allDays.length === 0) return;
-
-        // Nur Tag 1 initial sichtbar
-        allDays.forEach(function (day, index) {
-            if (index > 0) {
-                day.classList.add('hidden');
-            }
-        });
-
-        // Control-Container
-        const controlsDiv = document.createElement('div');
-        controlsDiv.className = 'bs_day_controls';
-
-        const addBtn = document.createElement('button');
-        addBtn.className = 'bs_btn bs_btn_add';
-        addBtn.type = 'button';
-        addBtn.innerHTML = '<i class="fas fa-plus-circle"></i> Tag hinzufügen';
-        addBtn.setAttribute('data-action', 'add-day');
-
-        const removeBtn = document.createElement('button');
-        removeBtn.className = 'bs_btn bs_btn_remove hidden';
-        removeBtn.type = 'button';
-        removeBtn.innerHTML = '<i class="fas fa-minus-circle"></i> Tag entfernen';
-        removeBtn.setAttribute('data-action', 'remove-day');
-
-        controlsDiv.appendChild(addBtn);
-        controlsDiv.appendChild(removeBtn);
-        tagesberichteSection.appendChild(controlsDiv);
-
-        controlsDiv.addEventListener('click', function (e) {
-            const button = e.target.closest('[data-action]');
-            if (!button) return;
-            const action = button.getAttribute('data-action');
-            if (action === 'add-day') {
-                addNextDay(allDays, addBtn, removeBtn);
-            } else if (action === 'remove-day') {
-                removeLastDay(allDays, addBtn, removeBtn);
-            }
-        });
-    }
-
-    function addNextDay(allDays, addBtn, removeBtn) {
-        const nextHiddenDay = allDays.find(function (day) { return day.classList.contains('hidden'); });
-        if (nextHiddenDay) {
-            nextHiddenDay.classList.remove('hidden');
-            setTimeout(function () {
-                nextHiddenDay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 100);
-        }
-        updateButtonStates(allDays, addBtn, removeBtn);
-    }
-
-    function removeLastDay(allDays, addBtn, removeBtn) {
-        const visibleDays = allDays.filter(function (day) { return !day.classList.contains('hidden'); });
-        if (visibleDays.length > 1) {
-            const lastVisibleDay = visibleDays[visibleDays.length - 1];
-            lastVisibleDay.classList.add('hidden');
-            setTimeout(function () {
-                const newLastDay = allDays.filter(function (day) { return !day.classList.contains('hidden'); }).pop();
-                if (newLastDay) {
-                    newLastDay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }
-            }, 100);
-        }
-        updateButtonStates(allDays, addBtn, removeBtn);
-    }
-
-    function updateButtonStates(allDays, addBtn, removeBtn) {
-        const visibleDays = allDays.filter(function (day) { return !day.classList.contains('hidden'); });
-        const hiddenDays = allDays.filter(function (day) { return day.classList.contains('hidden'); });
-
-        if (hiddenDays.length === 0) {
-            addBtn.classList.add('hidden');
-        } else {
-            addBtn.classList.remove('hidden');
-        }
-
-        if (visibleDays.length > 1) {
-            removeBtn.classList.remove('hidden');
-        } else {
-            removeBtn.classList.add('hidden');
-        }
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeDayControls);
+    var first = valid[0];
+    var last = valid[valid.length - 1];
+    var kw = document.createElement('span');
+    kw.className = 'bs_week_kw';
+    kw.textContent = 'KW ' + weekNumber(first);
+    var days = document.createElement('span');
+    days.className = 'bs_week_days';
+    if (last.getTime() === first.getTime()) {
+      days.textContent = formatShort(first);
     } else {
-        initializeDayControls();
+      var start = formatShort(first);
+      if (first.getUTCFullYear() === last.getUTCFullYear()) {
+        start = start.slice(0, 6);
+      }
+      days.textContent = start + ' bis ' + formatShort(last);
+    }
+    target.appendChild(kw);
+    target.appendChild(days);
+  }
+
+  function setupList(view) {
+    var cells = view.querySelectorAll('.bs_week_range');
+    for (var i = 0; i < cells.length; i++) {
+      var spans = cells[i].querySelectorAll('[data-bs-dates] span');
+      var dates = [];
+      for (var j = 0; j < spans.length; j++) {
+        dates.push(parseDate(spans[j].textContent));
+      }
+      var target = cells[i].querySelector('.bs_week_text');
+      if (target) {
+        showWeekCompact(target, dates);
+      }
     }
 
-    if (window.BerichtsheftTemplate) {
-        window.BerichtsheftTemplate.initializeDayControls = initializeDayControls;
+    var trophies = view.querySelectorAll('.bs_trophy');
+    for (var k = 0; k < trophies.length; k++) {
+      var textEl = trophies[k].querySelector('.bs_trophy_text');
+      var text = textEl ? (textEl.textContent || '').replace(/\s+/g, ' ').trim() : '';
+      if (text) {
+        trophies[k].title = 'Highlight der Woche: ' + text;
+        trophies[k].classList.remove('bs_is_hidden');
+      }
     }
-})();
+  }
 
-/* ============================================================
-   Tagesbericht-Tabs (single view)
-   ------------------------------------------------------------
-   - Immer 6 Tabs T1-T6
-   - Icon-Swap: fa-circle-check (befuellt) vs fa-circle (leer)
-   - Befuellt = mind. ein Feld ausser Datum hat Inhalt
-   - ARIA-Tabs-Pattern mit Keyboard-Navigation
-   ============================================================ */
-(function () {
-    'use strict';
-
-    function initializeDayTabs() {
-        const singleContainer = document.querySelector('.bs_berichtsheft_single');
-        if (!singleContainer) return;
-
-        const section = singleContainer.querySelector('.bs_tagesberichte');
-        if (!section) return;
-
-        const cards = Array.from(section.querySelectorAll('.bs_tagesbericht_card'));
-        if (cards.length === 0) return;
-
-        // Tab-Leiste
-        const tablist = document.createElement('nav');
-        tablist.className = 'bs_day_tabs';
-        tablist.setAttribute('role', 'tablist');
-        tablist.setAttribute('aria-label', 'Tagesberichte');
-
-        const tabs = cards.map(function (card, index) {
-            const day = card.getAttribute('data-day') || String(index + 1);
-            const panelId = 'bs_day_panel_' + day;
-            const tabId = 'bs_day_tab_' + day;
-
-            card.id = panelId;
-            card.setAttribute('role', 'tabpanel');
-            card.setAttribute('aria-labelledby', tabId);
-
-            const isFilled = cardHasContent(card);
-
-            const btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = 'bs_day_tab' + (isFilled ? ' is-filled' : ' is-empty');
-            btn.id = tabId;
-            btn.setAttribute('role', 'tab');
-            btn.setAttribute('data-day', day);
-            btn.setAttribute('aria-controls', panelId);
-            btn.setAttribute('aria-selected', 'false');
-            btn.setAttribute('tabindex', '-1');
-
-            const iconClass = isFilled ? 'fas fa-circle-check' : 'far fa-circle';
-            const srLabel = isFilled ? 'Tag ' + day + ', befuellt' : 'Tag ' + day + ', nur Datum';
-            btn.setAttribute('aria-label', srLabel);
-            btn.innerHTML = '<i class="' + iconClass + '" aria-hidden="true"></i><span>T' + day + '</span>';
-
-            tablist.appendChild(btn);
-            return btn;
-        });
-
-        // Tab-Leiste nach Section-Title einfuegen
-        const sectionTitle = section.querySelector('.bs_section_title');
-        if (sectionTitle && sectionTitle.nextSibling) {
-            section.insertBefore(tablist, sectionTitle.nextSibling);
-        } else {
-            section.insertBefore(tablist, section.firstChild);
-        }
-
-        // Alle Karten ausblenden, ersten Tab aktivieren
-        cards.forEach(function (c) { c.classList.add('hidden'); });
-        activateTab(0, false);
-
-        function activateTab(idx, focusTab) {
-            tabs.forEach(function (t, i) {
-                const isActive = (i === idx);
-                t.classList.toggle('is-active', isActive);
-                t.setAttribute('aria-selected', isActive ? 'true' : 'false');
-                t.setAttribute('tabindex', isActive ? '0' : '-1');
-                cards[i].classList.toggle('hidden', !isActive);
-            });
-            if (focusTab) tabs[idx].focus();
-        }
-
-        tablist.addEventListener('click', function (e) {
-            const btn = e.target.closest('.bs_day_tab');
-            if (!btn) return;
-            const idx = tabs.indexOf(btn);
-            if (idx !== -1) activateTab(idx, true);
-        });
-
-        tablist.addEventListener('keydown', function (e) {
-            const currentIdx = tabs.indexOf(document.activeElement);
-            if (currentIdx === -1) return;
-            let nextIdx = null;
-            if (e.key === 'ArrowRight') nextIdx = (currentIdx + 1) % tabs.length;
-            else if (e.key === 'ArrowLeft') nextIdx = (currentIdx - 1 + tabs.length) % tabs.length;
-            else if (e.key === 'Home') nextIdx = 0;
-            else if (e.key === 'End') nextIdx = tabs.length - 1;
-            if (nextIdx !== null) {
-                e.preventDefault();
-                activateTab(nextIdx, true);
-            }
-        });
+  function init() {
+    var add = document.querySelector('[data-bs-view="add"]');
+    if (add) {
+      linkLabels(add);
+      setupDays(add);
+      setupWeekField(add);
     }
-
-    function cardHasContent(card) {
-        // Datum wird von Moodle automatisch gesetzt -> ausschliessen
-        const selectors = '.bs_text_content, .bs_aufgabe_text, .bs_info_value:not(.bs_datum_container)';
-        const els = card.querySelectorAll(selectors);
-        return Array.from(els).some(function (el) {
-            return el.textContent.trim() !== '';
-        });
+    var single = document.querySelector('[data-bs-view="single"]');
+    if (single) {
+      formatDates(single);
+      setupDayTabs(single);
     }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeDayTabs);
-    } else {
-        initializeDayTabs();
+    var list = document.querySelector('[data-bs-view="list"]');
+    if (list) {
+      setupList(list);
     }
+  }
 
-    if (window.BerichtsheftTemplate) {
-        window.BerichtsheftTemplate.initializeDayTabs = initializeDayTabs;
-    }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();

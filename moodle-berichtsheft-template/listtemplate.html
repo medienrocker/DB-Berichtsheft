@@ -1,28 +1,20 @@
-<tr class="bs_list_row">
-    <td class="bs_td_name">
-        <div class="bs_user_info">
-            <span class="bs_user_avatar">##userpicture##</span>
-            <span class="bs_username">##user##</span>
-        </div>
-    </td>
-    <td class="bs_td_zeitraum bs_week_range"
-        data-d1="[[Datum1]]"
-        data-d2="[[Datum2]]"
-        data-d3="[[Datum3]]"
-        data-d4="[[Datum4]]"
-        data-d5="[[Datum5]]"
-        data-d6="[[Datum6]]">[[Datum1]]</td>
-    <td class="bs_td_beruf">[[Praktikumsberuf]]</td>
-    <td class="bs_td_betrieb">[[Praktikumsbetrieb]]</td>
-    <td class="bs_td_highlight">
-        <span class="bs_trophy_icon" title="Highlight der Woche: [[Highlight]]">
-            <i class="fas fa-trophy"></i>
-        </span>
-    </td>
-    <td class="bs_td_actions">
-        <div class="bs_action_buttons">
-            <span class="bs_action_link">##more##</span>
-            <span class="bs_action_link">##edit##</span>
-        </div>
-    </td>
-</tr>
+          <tr class="bs_table_row">
+            <td class="bs_td bs_td_user">
+              <div class="bs_list_card_user">
+                <span class="bs_userpicture">##userpicture##</span>
+                <span class="bs_username">##user##</span>
+              </div>
+            </td>
+            <td class="bs_td bs_td_date bs_week_range">
+              <span class="bs_week_text">[[Datum1]]</span>
+              <span class="bs_is_hidden" data-bs-dates><span>[[Datum1]]</span><span>[[Datum2]]</span><span>[[Datum3]]</span><span>[[Datum4]]</span><span>[[Datum5]]</span><span>[[Datum6]]</span></span>
+            </td>
+            <td class="bs_td bs_td_beruf">[[Praktikumsberuf]]</td>
+            <td class="bs_td bs_td_betrieb">[[Praktikumsbetrieb]]</td>
+            <td class="bs_td bs_td_highlight">
+              <span class="bs_trophy bs_is_hidden"><i class="fa fa-trophy bs_icon_deco" aria-hidden="true"></i><span class="bs_sr_only">Highlight der Woche: </span><span class="bs_trophy_text bs_sr_only">[[Highlight]]</span></span>
+            </td>
+            <td class="bs_td bs_td_actions">
+              <div class="bs_list_card_actions">##more## ##edit##</div>
+            </td>
+          </tr>
