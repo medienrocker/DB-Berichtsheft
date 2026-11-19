@@ -1001,8 +1001,9 @@
 
 /* ==================== SCHMALE BILDSCHIRME ==================== */
 @media (max-width: 600px) {
+  /* Unten mehr Platz, damit ein umbrechender Knopf nicht auf der Akzentlinie sitzt. */
   .bs_banner {
-    padding: var(--bs_spacing-sm) var(--bs_spacing-md);
+    padding: var(--bs_spacing-sm) var(--bs_spacing-md) var(--bs_spacing-md);
   }
 
   .bs_card {
