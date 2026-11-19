@@ -26,7 +26,7 @@ Das feedBOOK ist ein digitales Berichtsheft für das Betriebspraktikum. Ein Eint
 ### Einstellungen, die sich lohnen
 
 - **Eine Datenbank je Praktikumswoche:** Dann zeigt die Liste je Woche alle Lernenden.
-- **Neueste zuerst:** Reiter **Felder**, unten bei **Standard-Sortierfeld** „Zeit erstellt“ und „Absteigend“ wählen. Voreingestellt ist die älteste Woche oben.
+- **Reihenfolge:** Voreingestellt steht die neueste Woche oben. Ändern lässt sich das im Reiter **Felder**, unten bei **Standard-Sortierfeld**.
 - **Beschriftungen ändern:** im Reiter **Vorlagen**. Die Feldnamen selbst bitte nicht umbenennen, sonst braucht ein späteres Update eine Zuordnung von Hand.
 
 > Lernende sehen die Berichte der anderen. Wer das nicht will, stellt in den Einstellungen der Aktivität den Gruppenmodus „Getrennte Gruppen“ ein. Dann sieht jede Person nur die Berichte ihrer Gruppe.
