@@ -658,6 +658,25 @@
   display: none;
 }
 
+/* Kreis und Zahl als Paar im Raster, damit eine Zeile nie zwischen beiden umbricht.
+   Auf schmalen Bildschirmen vier Paare je Zeile, sonst alle acht. */
+.bs_field_group_inline fieldset {
+  display: grid;
+  grid-template-columns: repeat(4, auto auto);
+  justify-content: start;
+  align-items: center;
+}
+
+.bs_field_group_inline fieldset .inline-req {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 768px) {
+  .bs_field_group_inline fieldset {
+    grid-template-columns: repeat(8, auto auto);
+  }
+}
+
 .bs_field_group_inline fieldset input[type="radio"] {
   width: 20px;
   height: 20px;
